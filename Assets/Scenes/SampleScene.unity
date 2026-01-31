@@ -162,9 +162,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b55546313023a043b9145079d3d2cb3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputController2D
   dashTapWindow: 0.18
-  slideTapWindow: 0.15
+  slideTapWindow: 0.18
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
