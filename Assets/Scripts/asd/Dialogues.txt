@@ -1,0 +1,11 @@
+sari:
+Yolunu olusturmak icin maskeleri tak, ilkini dene.
+
+pembe:
+Her maske yeni yollar acar, bazilari ise yolunu kapatir, ust uste takabilirsin.
+
+beyaz:
+Maaskeleri sadece gerekince takar, maskeleri cikarabilirsin.
+
+mavi:
+Yuvarlanmayi dene, yuvarlanma tusu.
