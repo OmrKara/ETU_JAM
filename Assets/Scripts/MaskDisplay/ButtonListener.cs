@@ -7,4 +7,9 @@ public class ButtonListener : MonoBehaviour
     {
         SceneManager.LoadScene("LevelOne");
     }
+
+    public void ReturnStartScreen()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
