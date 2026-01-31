@@ -234,7 +234,7 @@ MonoBehaviour:
   groundCheckSize: {x: 0.6, y: 0.1}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   graphics: {fileID: 1358475967237333986}
   faceDeadzone: 0.05
   ledgeHopVelocity: 2.2
@@ -361,7 +361,7 @@ MonoBehaviour:
   headCheckSize: {x: 0.01, y: 0.05}
   solidLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 0
   unlockDelay: 0.08
 --- !u!1 &2558881775576002305
 GameObject:
