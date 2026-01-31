@@ -37,4 +37,15 @@ public class LevelManager : MonoBehaviour
             layer.SetActive(true);
         }
     }
+
+    public void DisplayLayer(int ButtonIndex)
+    {
+        GameObject layer = layers[ButtonIndex];
+        if (!layer.activeSelf)
+        {
+            layer.SetActive(false);
+            layer.GetComponent<CompositeCollider2D>().enabled = false;
+
+        }
+    }
 }
