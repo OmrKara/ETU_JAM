@@ -1,26 +1,21 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CollisionManager : MonoBehaviour
 {
-    public GameObject[] collisions;
-    [SerializeField] Dialogues dialogues;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject[] gameobj;
+    public Text textBar;
+    public Dialogues dialogues;
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        for (int i = 0 ; i < gameobj.Length; i++)
         {
-           
+            CollisionScript gameo = gameobj[i].GetComponent<CollisionScript>();
+            gameo.text = dialogues.dialogues[i];
+            gameo.textBar = textBar;
         }
     }
+
 }
