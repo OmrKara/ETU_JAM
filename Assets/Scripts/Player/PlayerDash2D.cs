@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDash2D : MonoBehaviour
 {
     public static PlayerDash2D Instance;
+    private PlayerMovement2D movement;
     [Header("References")]
 
     [Tooltip("Dash s�ras�nda kapat�lacak scriptler. (PlayerMovement2D mutlaka burada olsun)")]
@@ -46,6 +47,7 @@ public class PlayerDash2D : MonoBehaviour
     {
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
+        movement = PlayerMovement2D.i;
 
     }
 
@@ -61,9 +63,14 @@ public class PlayerDash2D : MonoBehaviour
         // Dash iste�i geldiyse ba�lat
         if (input.DashRequested)
         {
+            // 🚫 Crouch / stand-lock varken dash yok
+            if (movement != null && movement.IsCrouching)
+                return;
+
             int dir = ResolveDashDirection(input.Move);
             StartCoroutine(DashRoutine(dir));
         }
+
     }
 
     private int ResolveDashDirection(Vector2 move)

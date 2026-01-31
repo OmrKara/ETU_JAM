@@ -94,6 +94,9 @@ public class PlayerMovement2D : MonoBehaviour
     [Tooltip("Ceiling saymak için normal.y eşiği (daha negatif = daha kesin tavan).")]
     public float headEdgeCeilingNormalYMax = -0.6f;
 
+    [SerializeField] private StandLock2D standLock;
+    public bool IsCrouching { get; private set; }
+
     private float headEdgeCdTimer;
     private Vector2 queuedPositionNudge;
 
@@ -113,9 +116,11 @@ public class PlayerMovement2D : MonoBehaviour
     public Rigidbody2D Rb => rb;
     public bool IsFacingRight => isFacingRight;
 
-    private void Awake()
+    private void Start()
     {
         i = this;
+
+        if (standLock == null) standLock = GetComponent<StandLock2D>();
 
         rb = GetComponent<Rigidbody2D>();
         bodyCol = GetComponent<Collider2D>();
@@ -124,9 +129,8 @@ public class PlayerMovement2D : MonoBehaviour
 
         // Gravity'yi biz yöneteceğiz
         rb.gravityScale = 0f;
-
-        input = inputBehaviour as IPlayerInput2D;
         if (input == null) input = InputController2D.Current;
+        input = inputBehaviour as IPlayerInput2D;
 
         if (graphics != null)
         {
@@ -178,6 +182,12 @@ public class PlayerMovement2D : MonoBehaviour
         }
         if (isGrounded && !input.ControlHeld)
             isCrouching = false;
+
+        bool wantsCrouch = (input != null) && input.ControlHeld;
+        bool locked = (standLock != null) && standLock.IsLocked;
+
+        // Ctrl bırakılsa bile üstte engel varsa crouch devam
+        IsCrouching = wantsCrouch || locked;
     }
 
     private void FixedUpdate()

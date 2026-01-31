@@ -68,7 +68,7 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
             ShiftHeld = false;
 
             // kısa bas-bırak => dash isteği (ground only istersen burada kontrol et)
-            if (dashTapWindow > 0f && PlayerMovement2D.i != null && PlayerMovement2D.i.IsGrounded)
+            if (dashTapWindow > 0f)
             {
                 float held = Time.time - shiftDownTime;
                 if (held <= dashTapWindow)

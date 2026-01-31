@@ -113,13 +113,13 @@ public class PlayerAnimController : MonoBehaviour
         }
         if ((VxAbs > runVelDeadzone))
         {
-            if (InputController2D.Current.ShiftHeld)
+            if (InputController2D.Current.ShiftHeld && !movement.IsCrouching)
             {
                 State = PlayerAnimState.Run;
             }
             else
             {
-                if (InputController2D.Current.ControlHeld)
+                if (movement.IsCrouching)
                 {
                     State = PlayerAnimState.CrouchWalk;
                 }
@@ -131,7 +131,7 @@ public class PlayerAnimController : MonoBehaviour
         }
         else
         {
-            if (InputController2D.Current.ControlHeld)
+            if (movement.IsCrouching)
             {
                 State = PlayerAnimState.CrouchIdle;
             }
