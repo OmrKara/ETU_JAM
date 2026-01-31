@@ -16,7 +16,7 @@ public class PortalScript : MonoBehaviour
         {
             if (enteredObject.GetComponent<InventoryManager>().isIN.Length == levelMaskAmount)
             {
-                SceneManager.LoadScene(levelNum + 1);
+                SceneManager.LoadScene(2);
             }
         }
     }
