@@ -250,7 +250,7 @@ MonoBehaviour:
   headEdgeTopZone: 0.2
   headEdgeSideInset: 0.12
   headEdgeCeilingNormalYMax: -0.6
-  standLock: {fileID: 0}
+  standLock: {fileID: 7136253311178395382}
 --- !u!212 &8726847646514251953
 SpriteRenderer:
   serializedVersion: 2
