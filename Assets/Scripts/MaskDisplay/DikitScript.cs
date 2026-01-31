@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class DikitScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private Transform spawnPoint;
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        GameObject player = collision.gameObject;
+
+        if (player.CompareTag("Player"))
+        {
+            player.transform.position = spawnPoint.position;
+        }
     }
 }
