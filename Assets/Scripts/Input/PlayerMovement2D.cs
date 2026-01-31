@@ -129,8 +129,8 @@ public class PlayerMovement2D : MonoBehaviour
 
         // Gravity'yi biz yöneteceğiz
         rb.gravityScale = 0f;
-        input = InputController2D.Current;
         input = inputBehaviour as IPlayerInput2D;
+        input = InputController2D.i;
         if (input == null) input = InputController2D.Current;
 
         if (graphics != null)

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputController2D : MonoBehaviour, IPlayerInput2D
 {
+    public static InputController2D i;
     public static IPlayerInput2D Current { get; private set; }
 
     private Controls controls;
@@ -37,6 +38,7 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
 
     private void Awake()
     {
+        i = this;
         controls = new Controls();
         Current = this;
     }
