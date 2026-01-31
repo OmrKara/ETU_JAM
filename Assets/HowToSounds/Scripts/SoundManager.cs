@@ -82,7 +82,7 @@ public static class SoundManager {
 
 
     private static bool CanPlaySound(Sound sound) {
-        if ( sound == Sound.PlayerWalk ||  sound == Sound.PlayerCrouchWalk || sound == Sound.PlayerRun) {
+        if ( sound == Sound.PlayerWalk ||  sound == Sound.PlayerCrouchWalk || sound == Sound.PlayerRun || sound == Sound.PortalSound) {
             if (soundTimerDictionary.ContainsKey(sound))
             {
                 float lastTimePlayed = soundTimerDictionary[sound];
