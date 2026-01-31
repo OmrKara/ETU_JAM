@@ -12,6 +12,7 @@ public class MaskDisplayer : MonoBehaviour
     [SerializeField] private Sprite frame;
 
     [SerializeField] private GameObject[] buttons;
+
     private GameObject[] activeButtons;
     public int layerMaskAmount;
 
