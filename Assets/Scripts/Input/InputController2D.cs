@@ -61,14 +61,20 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
             ShiftPressed = true;
             ShiftHeld = true;
             shiftDownTime = Time.time;
+
+            // ✅ AIR DASH: basıldığı anda
+            if (PlayerMovement2D.i != null && !PlayerMovement2D.i.IsGrounded)
+            {
+                DashRequested = true;
+            }
         };
 
         controls.PCGamePlay.LShift.canceled += ctx =>
         {
             ShiftHeld = false;
 
-            // kısa bas-bırak => dash isteği (ground only istersen burada kontrol et)
-            if (dashTapWindow > 0f)
+            // ✅ GROUND DASH: tap (bas-bırak)
+            if (dashTapWindow > 0f && PlayerMovement2D.i != null && PlayerMovement2D.i.IsGrounded)
             {
                 float held = Time.time - shiftDownTime;
                 if (held <= dashTapWindow)
