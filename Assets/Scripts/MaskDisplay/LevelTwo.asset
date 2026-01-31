@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e4e6c608a9bc14e8f1408626b99680, type: 3}
   m_Name: LevelTwo
   m_EditorClassIdentifier: Assembly-CSharp::Level
-  levelNum: 2
+  levelNum: 3
   itemAmount: 1
   layerMaskAmount: 5
