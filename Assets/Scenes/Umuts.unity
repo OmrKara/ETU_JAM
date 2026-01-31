@@ -1655,7 +1655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &526858948
 Transform:
   m_ObjectHideFlags: 0
@@ -2422,6 +2422,7 @@ MonoBehaviour:
   headEdgeTopZone: 0.2
   headEdgeSideInset: 0.12
   headEdgeCeilingNormalYMax: -0.6
+  standLock: {fileID: 0}
 --- !u!50 &924049860
 Rigidbody2D:
   serializedVersion: 5
@@ -3843,7 +3844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1454088114
 Transform:
   m_ObjectHideFlags: 0
@@ -5535,7 +5536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1909385586
 Transform:
   m_ObjectHideFlags: 0

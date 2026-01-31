@@ -5,4 +5,5 @@ public class Level : ScriptableObject
 {
     public int levelNum;
     public int itemAmount;
+    public int layerMaskAmount;
 }
