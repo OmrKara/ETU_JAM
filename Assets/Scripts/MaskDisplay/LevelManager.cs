@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class LevelManager : MonoBehaviour
         {
             layer.SetActive(false);
             layer.GetComponent<CompositeCollider2D>().enabled = false;
+            layer.GetComponent<Tilemap>();
 
         }
     }
 }
-
