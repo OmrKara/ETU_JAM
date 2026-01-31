@@ -8,14 +8,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - ground
+  - 
   - Water
   - UI
-<<<<<<< HEAD
-  - Player
-=======
-  - unGround
->>>>>>> 8af0889a72acfdc79c629885781a2099dacdcb74
+  - 
   - 
   - 
   - 
