@@ -24,4 +24,17 @@ public class LevelManager : MonoBehaviour
     {
 
     }
+
+    public void ManageLayer(int ButtonIndex)
+    {
+        GameObject layer = layers[ButtonIndex];
+        if (layer.activeSelf)
+        {
+            layer.SetActive(false);
+        }
+        else
+        {
+            layer.SetActive(true);
+        }
+    }
 }
