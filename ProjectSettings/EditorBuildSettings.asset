@@ -9,10 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Umuts.unity
     guid: e8a5da35ea5923e49b45440f499f81b9
   - enabled: 1
+    path: Assets/Scenes/LevelTutorial.unity
+    guid: 5e5397263f566f64ca95e15ee562d627
+  - enabled: 1
     path: Assets/Scenes/LevelOne.unity
     guid: 05da5816900cb3943b3f47d8513db42e
   - enabled: 1
-    path: Assets/Scenes/DenemePlayer.unity
+    path: Assets/Scenes/LevelTwo.unity
+    guid: f69807a1f4d27be488b9561374317694
+  - enabled: 1
+    path: Assets/Scenes/LevelThree.unity
     guid: 3e7911a275da7434d91f624c0d55d308
   - enabled: 1
     path: Assets/Scenes/EndingScene.unity
