@@ -14,7 +14,7 @@ public class ChickenScript : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().linearVelocityX = -9f;
 
-        if (gameObject.transform.position.y < -10)
+        if (gameObject.transform.position.y < -7.5)
         {
             gameObject.SetActive(false);
         }
