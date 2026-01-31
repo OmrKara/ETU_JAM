@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9069752134742643939}
   - component: {fileID: 8408181314554527817}
+  - component: {fileID: 4370836932146077546}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -40,3 +41,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379477031932411370}
   m_Enabled: 1
+--- !u!114 &4370836932146077546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379477031932411370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4297fd57d27d4d45a72764d29d09a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameHandler

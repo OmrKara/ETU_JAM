@@ -14,12 +14,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using CodeMonkey;
 
 public static class SoundManager {
 
     public enum Sound {
         PlayerDash,
-        PlayerMove,
         PlayerWalk,
         PlayerRun,
         PlayerLand,
@@ -40,7 +40,10 @@ public static class SoundManager {
 
     public static void Initialize() {
         soundTimerDictionary = new Dictionary<Sound, float>();
-        soundTimerDictionary[Sound.PlayerMove] = 0f;
+        soundTimerDictionary[Sound.PlayerWalk] = 0f;
+        soundTimerDictionary[Sound.PlayerRun] = 0f;
+        soundTimerDictionary[Sound.PlayerCrouchWalk] = 0f;
+
     }
 
     public static void PlaySound(Sound sound, Vector3 position) {
@@ -53,51 +56,86 @@ public static class SoundManager {
             audioSource.spatialBlend = 1f;
             audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.dopplerLevel = 0f;
+            oneShotAudioSource.volume = GetVolume(sound);
             audioSource.Play();
 
             Object.Destroy(soundGameObject, audioSource.clip.length);
         }
     }
 
-    public static void PlaySound(Sound sound) {
-        if (CanPlaySound(sound)) {
-            if (oneShotGameObject == null) {
-                oneShotGameObject = new GameObject("One Shot Sound");
-                oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
-            }
-            oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
+    public static void PlaySound(Sound sound)
+    {
+        if (!CanPlaySound(sound)) return;
+
+        if (oneShotGameObject == null)
+        {
+            oneShotGameObject = new GameObject("One Shot Sound");
+            oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+            // burada sabit ayarlar (spatial blend, output mixer, rolloff vs) yapabilirsin
         }
+
+        AudioClip clip = GetAudioClip(sound);
+        float volume = GetVolume(sound); // 0..1 aralığında döndür
+
+        oneShotAudioSource.PlayOneShot(clip, volume);
     }
 
+
     private static bool CanPlaySound(Sound sound) {
-        switch (sound) {
-        default:
-            return true;
-        case Sound.PlayerMove:
-            if (soundTimerDictionary.ContainsKey(sound)) {
+        if ( sound == Sound.PlayerWalk ||  sound == Sound.PlayerCrouchWalk || sound == Sound.PlayerRun || sound == Sound.PortalSound) {
+            if (soundTimerDictionary.ContainsKey(sound))
+            {
                 float lastTimePlayed = soundTimerDictionary[sound];
-                float playerMoveTimerMax = .15f;
-                if (lastTimePlayed + playerMoveTimerMax < Time.time) {
+                float playerMoveTimerMax = 0.15f;
+                foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClipArray)
+                {
+                    if (soundAudioClip.sound == sound)
+                    {
+                        playerMoveTimerMax = soundAudioClip.coolDown;
+                    }
+                }
+                if (lastTimePlayed + playerMoveTimerMax < Time.time)
+                {
                     soundTimerDictionary[sound] = Time.time;
                     return true;
-                } else {
+                }
+                else
+                {
                     return false;
                 }
-            } else {
+            }
+            else
+            {
                 return true;
             }
-            //break;
+        } 
+        else{
+            return true;
         }
     }
 
     private static AudioClip GetAudioClip(Sound sound) {
         foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClipArray) {
             if (soundAudioClip.sound == sound) {
-                return soundAudioClip.audioClip;
+                int v = Random.Range(0, soundAudioClip.audioClip.Length);
+                return soundAudioClip.audioClip[v];
             }
         }
         Debug.LogError("Sound " + sound + " not found!");
         return null;
+    }
+
+    private static float GetVolume(Sound sound)
+    {
+        foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClipArray)
+        {
+            if (soundAudioClip.sound == sound)
+            {
+                return soundAudioClip.volumeMultiply;
+            }
+        }
+        Debug.LogError("Sound " + sound + " not found!");
+        return 0.5f;
     }
 
 }
