@@ -4,6 +4,9 @@ public enum PlayerAnimState
 {
     Idle,
     Walk,
+    CrouchWalk,
+    CrouchIdle,
+    Roll,
     Run,
     Dash,
     JumpUp,
@@ -48,7 +51,16 @@ public class PlayerAnimController : MonoBehaviour
 
     private void Update()
     {
-
+        if (PlayerDash2D.Instance.IsDashing)
+        {
+            State = PlayerAnimState.Dash;
+            return;
+        }
+        if (PlayerSlide2D.Instance.IsSliding)
+        {
+            State = PlayerAnimState.Roll;
+            return;
+        }
         if (movement == null || movement.Rb == null)
         {
             State = PlayerAnimState.Idle;
@@ -60,11 +72,7 @@ public class PlayerAnimController : MonoBehaviour
         VxAbs = Mathf.Abs(movement.Rb.linearVelocity.x);
 
         bool isAir = !Grounded;
-        if (PlayerDash2D.Instance.IsDashing)
-        {
-            State = PlayerAnimState.Dash;
-            return;
-        }
+
         // Landing detect
         if (!wasGrounded && Grounded && landMinTime > 0f)
             landTimer = landMinTime;
@@ -111,12 +119,26 @@ public class PlayerAnimController : MonoBehaviour
             }
             else
             {
-                State = PlayerAnimState.Walk;
+                if (InputController2D.Current.ControlHeld)
+                {
+                    State = PlayerAnimState.CrouchWalk;
+                }
+                else
+                {
+                    State = PlayerAnimState.Walk;
+                }
             }
         }
         else
         {
-            State = PlayerAnimState.Idle;
+            if (InputController2D.Current.ControlHeld)
+            {
+                State = PlayerAnimState.CrouchIdle;
+            }
+            else
+            {
+                State = PlayerAnimState.Idle;
+            }
         }
 
 
