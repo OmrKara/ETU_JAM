@@ -1,13 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
-
     [SerializeField] Level level;
     [SerializeField] PortalScript portal;
     [SerializeField] MaskDisplayer maskDisplayer;
     [SerializeField] private GameObject[] layers;
+
+    private bool[] layerToggledOn;   // click ile kalıcı açık mı?
+    private bool[] previewOpened;    // hover ile preview açıldı mı?
 
     void Start()
     {
@@ -15,77 +17,127 @@ public class LevelManager : MonoBehaviour
         portal.levelNum = level.levelNum;
         maskDisplayer.layerMaskAmount = level.layerMaskAmount;
 
-        for (int i = 0; i < level.layerMaskAmount; i++)
+        int n = level.layerMaskAmount;
+        layerToggledOn = new bool[n];
+        previewOpened = new bool[n];
+
+        for (int i = 0; i < n; i++)
         {
+            layerToggledOn[i] = false;
+            previewOpened[i] = false;
             layers[i].SetActive(false);
         }
     }
 
-    void Update()
+    // =====================
+    // CLICK: kalıcı toggle
+    // =====================
+    public void ManageLayer(int index)
     {
+        Tilemap tm = layers[index].GetComponent<Tilemap>();
+        if (tm == null) return;
 
-    }
+        bool newState = !layerToggledOn[index];
+        layerToggledOn[index] = newState;
 
-    public void ManageLayer(int ButtonIndex)
-    {
-        GameObject layer = layers[ButtonIndex];
-        if (layer.activeSelf)
+        if (newState)
         {
-            layer.SetActive(false);
+            // ✅ Kalıcı açıldı: preview bayrağını temizle ki exit kapatamasın
+            previewOpened[index] = false;
+
+            RestoreToNormal(tm); // aktif + collider açık + alpha 1
         }
         else
         {
-            layer.SetActive(true);
+            // ✅ Kalıcı kapandı: preview bayrağını da temizle
+            previewOpened[index] = false;
+
+            tm.gameObject.SetActive(false);
         }
     }
 
-    public void DisplayLayer(int ButtonIndex)
+    // =====================
+    // HOVER: preview aç
+    // =====================
+    public void HoverLayer(int index)
     {
-        GameObject layer = layers[ButtonIndex];
-        if (!layer.activeSelf)
-        {
-            layer.SetActive(false);
-            layer.GetComponent<CompositeCollider2D>().enabled = false;
-            layer.GetComponent<Tilemap>();
+        if (layerToggledOn[index]) return;  // kalıcı açıksa hover yok
+        if (previewOpened[index]) return;   // zaten preview açık
 
-        }
+        Tilemap tm = layers[index].GetComponent<Tilemap>();
+        if (tm == null) return;
+
+        previewOpened[index] = true;
+        ActivatePreview(tm);
     }
 
-    public static void ActivateTilemapWithoutCollision(Tilemap tilemap)
+    // =====================
+    // EXIT: preview kapat
+    // =====================
+    public void ExitLayer(int index)
     {
-        if (tilemap == null) return;
+        if (layerToggledOn[index]) return;   // ✅ kalıcı açıksa asla kapatma
+        if (!previewOpened[index]) return;   // preview açılmadıysa kapatma
 
+        Tilemap tm = layers[index].GetComponent<Tilemap>();
+        if (tm == null) return;
+
+        previewOpened[index] = false;
+        RestorePreviewAndDisable(tm);
+    }
+
+    // ---------------------
+    // PREVIEW ON (hover)
+    // ---------------------
+    public static void ActivatePreview(Tilemap tilemap)
+    {
         tilemap.gameObject.SetActive(true);
 
-        // Collision kapat
         var collider = tilemap.GetComponent<TilemapCollider2D>();
         if (collider != null) collider.enabled = false;
 
         var composite = tilemap.GetComponent<CompositeCollider2D>();
         if (composite != null) composite.enabled = false;
 
-        // Alpha %50 (DO�RU YER)
         Color c = tilemap.color;
         c.a = 0.5f;
         tilemap.color = c;
     }
-    public static void RestoreTilemap(Tilemap tilemap)
-    {
-        if (tilemap == null) return;
 
+    // ---------------------
+    // NORMAL ON (click aç)
+    // ---------------------
+    private static void RestoreToNormal(Tilemap tilemap)
+    {
         tilemap.gameObject.SetActive(true);
 
-        // Collision a�
         var collider = tilemap.GetComponent<TilemapCollider2D>();
         if (collider != null) collider.enabled = true;
 
         var composite = tilemap.GetComponent<CompositeCollider2D>();
         if (composite != null) composite.enabled = true;
 
-        // Alpha %100
         Color c = tilemap.color;
         c.a = 1f;
         tilemap.color = c;
     }
 
+    // ---------------------
+    // PREVIEW OFF (exit)
+    // ---------------------
+    public static void RestorePreviewAndDisable(Tilemap tilemap)
+    {
+        // güvenli restore
+        var collider = tilemap.GetComponent<TilemapCollider2D>();
+        if (collider != null) collider.enabled = true;
+
+        var composite = tilemap.GetComponent<CompositeCollider2D>();
+        if (composite != null) composite.enabled = true;
+
+        Color c = tilemap.color;
+        c.a = 1f;
+        tilemap.color = c;
+
+        tilemap.gameObject.SetActive(false);
     }
+}

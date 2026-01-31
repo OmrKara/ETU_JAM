@@ -19176,19 +19176,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 864018282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &864018282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19611,19 +19599,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1235476580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1235476580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19674,6 +19650,7 @@ GameObject:
   - component: {fileID: 1270705547}
   - component: {fileID: 1270705546}
   - component: {fileID: 1270705545}
+  - component: {fileID: 1270705548}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -19769,6 +19746,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270705543}
   m_CullTransparentMesh: 1
+--- !u!114 &1270705548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270705543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2032814341f32b744b1036f71b12ea87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UILevelLayerController
+  buttons:
+  - {fileID: 1685620342}
+  - {fileID: 1703510403}
+  - {fileID: 864018281}
+  - {fileID: 1293687506}
+  - {fileID: 1835897777}
+  - {fileID: 1235476579}
+  - {fileID: 1663596450}
+  layers:
+  - {fileID: 1521060573}
+  - {fileID: 266015167}
+  - {fileID: 800299469}
+  - {fileID: 230368701}
+  - {fileID: 458402229}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1288897929
 GameObject:
   m_ObjectHideFlags: 0
@@ -25811,19 +25816,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1293687507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1293687507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28415,19 +28408,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1663596451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1663596451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28568,19 +28549,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1685620343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1685620343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28776,19 +28745,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1703510404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1703510404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28984,19 +28941,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835897778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117087117}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ManageLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1835897778
 MonoBehaviour:
   m_ObjectHideFlags: 0
