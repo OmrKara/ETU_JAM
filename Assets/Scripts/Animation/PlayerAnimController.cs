@@ -93,8 +93,8 @@ public class PlayerAnimController : MonoBehaviour
         if (landTimer > 0f)
         {
             landTimer -= Time.deltaTime;
+            if (State != PlayerAnimState.Land) SoundManager.PlaySound(SoundManager.Sound.PlayerLand, movement.transform.position);
             State = PlayerAnimState.Land;
-            SoundManager.PlaySound(SoundManager.Sound.PlayerLand, movement.transform.position);
             return;
         }
 
