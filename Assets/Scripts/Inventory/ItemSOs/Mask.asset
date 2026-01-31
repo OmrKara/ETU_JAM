@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: 
   itemDescription: 
-  sprt: {fileID: 0}
+  sprt: {fileID: 281837609130165643, guid: c316b5a26902fc6459a143157a594fca, type: 3}
