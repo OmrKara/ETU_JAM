@@ -237,7 +237,7 @@ public class PlayerMovement2D : MonoBehaviour
             v.y = jumpVelocity;   // snappy takeoff
             bufferTimer = 0f;
             coyoteTimer = 0f;
-            SoundManager.PlaySound(SoundManager.Sound.PlayerJump, PlayerMovement2D.i.transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerJump);
             isGrounded = false;
         }
 

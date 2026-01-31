@@ -93,7 +93,7 @@ public class PlayerAnimController : MonoBehaviour
         if (landTimer > 0f)
         {
             landTimer -= Time.deltaTime;
-            if (State != PlayerAnimState.Land) SoundManager.PlaySound(SoundManager.Sound.PlayerLand, movement.transform.position);
+            if (State != PlayerAnimState.Land) SoundManager.PlaySound(SoundManager.Sound.PlayerLand);
             State = PlayerAnimState.Land;
             return;
         }
@@ -117,19 +117,19 @@ public class PlayerAnimController : MonoBehaviour
             if (InputController2D.Current.ShiftHeld && !movement.IsCrouching)
             {
                 State = PlayerAnimState.Run;
-                SoundManager.PlaySound(SoundManager.Sound.PlayerRun, movement.transform.position);
+                SoundManager.PlaySound(SoundManager.Sound.PlayerRun);
             }
             else
             {
                 if (movement.IsCrouching)
                 {
                     State = PlayerAnimState.CrouchWalk;
-                    SoundManager.PlaySound(SoundManager.Sound.PlayerCrouchWalk, movement.transform.position);
+                    SoundManager.PlaySound(SoundManager.Sound.PlayerCrouchWalk);
                 }
                 else
                 {
                     State = PlayerAnimState.Walk;
-                    SoundManager.PlaySound(SoundManager.Sound.PlayerWalk, movement.transform.position);
+                    SoundManager.PlaySound(SoundManager.Sound.PlayerWalk);
                 }
             }
         }

@@ -70,7 +70,7 @@ public class PlayerDash2D : MonoBehaviour
             int dir = ResolveDashDirection(input.Move);
             StartCoroutine(DashRoutine(dir));
 
-            SoundManager.PlaySound(SoundManager.Sound.PlayerDash, PlayerMovement2D.i.transform.position);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDash);
         }
 
     }

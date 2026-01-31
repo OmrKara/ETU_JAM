@@ -34,7 +34,9 @@ public class GameAssets : MonoBehaviour {
     [System.Serializable]
     public class SoundAudioClip {
         public SoundManager.Sound sound;
-        public AudioClip audioClip;
+        public AudioClip[] audioClip;
+        public float coolDown = 0;
+        public float volumeMultiply = 0.5f;
     }
 
 
