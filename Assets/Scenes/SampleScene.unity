@@ -267,6 +267,115 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &566344713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566344715}
+  - component: {fileID: 566344714}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &566344714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566344713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b803e20a4fd97b45be60489e2bf6f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAssets
+  soundAudioClipArray:
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 7c4ce4f255b577f49bb835f226d3e179, type: 3}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 2
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 6
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 7
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 8
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 8
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 10
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+  - sound: 10
+    audioClip: {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+--- !u!4 &566344715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566344713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &864898038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864898040}
+  - component: {fileID: 864898039}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &864898039
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864898038}
+  m_Enabled: 1
+--- !u!4 &864898040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864898038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25189, y: -1.86606, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004461785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,3 +1428,5 @@ SceneRoots:
   - {fileID: 1858988504}
   - {fileID: 2574084190647896870}
   - {fileID: 1004461787}
+  - {fileID: 566344715}
+  - {fileID: 864898040}
