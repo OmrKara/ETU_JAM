@@ -17,6 +17,11 @@ public class PlayerAnimationSetter : MonoBehaviour
     private static readonly int Fall = Animator.StringToHash("Fall");
     private static readonly int Land = Animator.StringToHash("Land");
     private static readonly int Dash = Animator.StringToHash("Dash");
+    private static readonly int CrouchWalk = Animator.StringToHash("CrouchWalk");
+    private static readonly int CrouchIdle = Animator.StringToHash("CrouchIdle");
+    private static readonly int Roll = Animator.StringToHash("Roll");
+
+
 
 
     private void Awake()
@@ -42,6 +47,9 @@ public class PlayerAnimationSetter : MonoBehaviour
             PlayerAnimState.Land => Land,
             PlayerAnimState.Run => Run,
             PlayerAnimState.Dash => Dash,
+            PlayerAnimState.CrouchWalk=> CrouchWalk,
+            PlayerAnimState.CrouchIdle => CrouchIdle,
+            PlayerAnimState.Roll => Roll,
             _ => Idle
         };
 

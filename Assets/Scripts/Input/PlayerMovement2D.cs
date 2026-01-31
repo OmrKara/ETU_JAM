@@ -143,6 +143,11 @@ public class PlayerMovement2D : MonoBehaviour
     private void Update()
     {
         if (input == null) return;
+        Debug.Log("Control held" +input.ControlHeld);
+        Debug.Log("Control pres" + input.ControlPressed);
+
+        Debug.Log("dash held" + input.ShiftHeld);
+        Debug.Log("dash press" +input.ShiftPressed);
 
         // Ground
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer);
