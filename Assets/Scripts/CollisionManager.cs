@@ -5,7 +5,7 @@ using TMPro;
 public class CollisionManager : MonoBehaviour
 {
     public GameObject[] gameobj;
-    public Text textBar;
+    public TextMeshProUGUI textBar;
     public Dialogues dialogues;
 
     public void Start()

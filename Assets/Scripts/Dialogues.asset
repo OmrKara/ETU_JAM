@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogues
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   dialogues:
-  - Maske takma
+  - "Maske: Kullanmak i\xE7in sa\u011F \xFCst k\xF6\u015Fedeki ikonlara t\u0131klay\u0131n."
   - "Y\xFCr\xFCme"
   - "Z\u0131plama"
   - "Ko\u015Fma"
