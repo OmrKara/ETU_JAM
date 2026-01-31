@@ -1,25 +1,34 @@
 fileFormatVersion: 2
-guid: 03dbc4468555b88438029c7f4c7b27ce
+guid: 71a7f8e8d60637847bd027d7be4a5b4b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7944620761231817343
-    second: deneme_0
+      213: 7475974851445736059
+    second: New Piskel-5.png_0
   - first:
-      213: -119467827690953180
-    second: deneme_1
+      213: 3174438028788750144
+    second: New Piskel-5.png_1
   - first:
-      213: 1336345997496883130
-    second: deneme_2
+      213: 6853978497479743645
+    second: New Piskel-5.png_2
   - first:
-      213: 26558843764158955
-    second: deneme_3
+      213: -8847835316002560426
+    second: New Piskel-5.png_3
   - first:
-      213: -1992713840584905984
-    second: deneme_4
+      213: 2865687322548285569
+    second: New Piskel-5.png_4
   - first:
-      213: -7943199057451533748
-    second: deneme_5
+      213: 6808750372303215515
+    second: New Piskel-5.png_5
+  - first:
+      213: 2857351811985507119
+    second: New Piskel-5.png_6
+  - first:
+      213: 7613707758200095100
+    second: New Piskel-5.png_7
+  - first:
+      213: 6774340268582396994
+    second: New Piskel-5.png_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: deneme_0
+      name: New Piskel-5.png_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 45
-        width: 9
-        height: 6
+        x: 15
+        y: 655
+        width: 82
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7a7a6c6d76f04e60800000000000000
-      internalID: 7944620761231817343
+      spriteID: b724d2a948fffb760800000000000000
+      internalID: 7475974851445736059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deneme_1
+      name: New Piskel-5.png_1
       rect:
         serializedVersion: 2
-        x: 26
-        y: 31
-        width: 38
-        height: 20
+        x: 335
+        y: 751
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 426a468c4a0975ef0800000000000000
-      internalID: -119467827690953180
+      spriteID: 047d17b719edd0c20800000000000000
+      internalID: 3174438028788750144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deneme_2
+      name: New Piskel-5.png_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 30
-        width: 6
-        height: 10
+        x: 511
+        y: 687
+        width: 130
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab711ddba97ab8210800000000000000
-      internalID: 1336345997496883130
+      spriteID: d98127821293e1f50800000000000000
+      internalID: 6853978497479743645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deneme_3
+      name: New Piskel-5.png_3
       rect:
         serializedVersion: 2
-        x: 20
-        y: 26
-        width: 9
-        height: 14
+        x: 703
+        y: 719
+        width: 146
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be13530b02b5e5000800000000000000
-      internalID: 26558843764158955
+      spriteID: 656e28e68ac263580800000000000000
+      internalID: -8847835316002560426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deneme_4
+      name: New Piskel-5.png_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 19
-        width: 12
-        height: 8
+        x: 511
+        y: 511
+        width: 114
+        height: 162
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00baee0e1557854e0800000000000000
-      internalID: -1992713840584905984
+      spriteID: 180b4d1df67f4c720800000000000000
+      internalID: 2865687322548285569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deneme_5
+      name: New Piskel-5.png_5
       rect:
         serializedVersion: 2
-        x: 42
-        y: 19
-        width: 13
-        height: 7
+        x: 975
+        y: 559
+        width: 34
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +249,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4a3268ca8614c190800000000000000
-      internalID: -7943199057451533748
+      spriteID: b9b1179a36a8d7e50800000000000000
+      internalID: 6808750372303215515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel-5.png_6
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 367
+        width: 194
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2307b7855a57a720800000000000000
+      internalID: 2857351811985507119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel-5.png_7
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 319
+        width: 114
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71072fedd259a960800000000000000
+      internalID: 7613707758200095100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel-5.png_8
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 319
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2446a70159a430e50800000000000000
+      internalID: 6774340268582396994
       vertices: []
       indices: 
       edges: []
@@ -260,12 +335,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      deneme_0: 7944620761231817343
-      deneme_1: -119467827690953180
-      deneme_2: 1336345997496883130
-      deneme_3: 26558843764158955
-      deneme_4: -1992713840584905984
-      deneme_5: -7943199057451533748
+      New Piskel-5.png_0: 7475974851445736059
+      New Piskel-5.png_1: 3174438028788750144
+      New Piskel-5.png_2: 6853978497479743645
+      New Piskel-5.png_3: -8847835316002560426
+      New Piskel-5.png_4: 2865687322548285569
+      New Piskel-5.png_5: 6808750372303215515
+      New Piskel-5.png_6: 2857351811985507119
+      New Piskel-5.png_7: 7613707758200095100
+      New Piskel-5.png_8: 6774340268582396994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
