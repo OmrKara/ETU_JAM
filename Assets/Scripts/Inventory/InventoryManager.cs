@@ -3,6 +3,7 @@ using System;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
     public IsInInv[] isIN;
 
     public void Start()
@@ -11,6 +12,10 @@ public class InventoryManager : MonoBehaviour
         {
             slot.UpdateUI();
         }
+    }
+    private void Awake()
+    {
+        Instance = this;
     }
     private void OnEnable()
     {
