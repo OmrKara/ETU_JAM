@@ -116,7 +116,7 @@ public class PlayerMovement2D : MonoBehaviour
     public Rigidbody2D Rb => rb;
     public bool IsFacingRight => isFacingRight;
 
-    private void Awake()
+    private void Start()
     {
         i = this;
 
@@ -129,9 +129,8 @@ public class PlayerMovement2D : MonoBehaviour
 
         // Gravity'yi biz yöneteceğiz
         rb.gravityScale = 0f;
-        input = inputBehaviour as IPlayerInput2D;
-        input = InputController2D.i;
         if (input == null) input = InputController2D.Current;
+        input = inputBehaviour as IPlayerInput2D;
 
         if (graphics != null)
         {
@@ -238,6 +237,7 @@ public class PlayerMovement2D : MonoBehaviour
             v.y = jumpVelocity;   // snappy takeoff
             bufferTimer = 0f;
             coyoteTimer = 0f;
+            SoundManager.PlaySound(SoundManager.Sound.PlayerJump, PlayerMovement2D.i.transform.position);
             isGrounded = false;
         }
 

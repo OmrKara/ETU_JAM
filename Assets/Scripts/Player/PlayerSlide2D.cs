@@ -123,6 +123,7 @@ public class PlayerSlide2D : MonoBehaviour
     private IEnumerator SlideRoutine(int dir)
     {
         isSliding = true;
+        SoundManager.PlaySound(SoundManager.Sound.PlayerSlide, movement.transform.position);
         nextSlideTime = Time.time + slideCooldown;
 
         // movement'ı garanti kapat
