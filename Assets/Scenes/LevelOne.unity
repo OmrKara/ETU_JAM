@@ -3928,7 +3928,7 @@ MonoBehaviour:
   - {fileID: 99614090}
   - {fileID: 1100711801}
   - {fileID: 206893551}
-  layerMaskAmount: 0
+  layerMaskAmount: 3
 --- !u!4 &1057020918
 Transform:
   m_ObjectHideFlags: 0

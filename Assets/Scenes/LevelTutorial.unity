@@ -18326,7 +18326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalScript
   levelMaskAmount: 3
-  levelNum: 0
+  levelNum: 1
 --- !u!61 &1934256074
 BoxCollider2D:
   m_ObjectHideFlags: 0
