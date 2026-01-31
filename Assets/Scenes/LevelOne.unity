@@ -1018,25 +1018,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[2].audioClip.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[2].audioClip.Array.data[0]'
+      propertyPath: 'soundAudioClipArray.Array.data[11].audioClip.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 8d753b90bf9b06f4997cab79da6ca6ea, type: 3}
+      objectReference: {fileID: 8300000, guid: 9dc4ea2dd20dab74b96b346e8aabbfb8, type: 3}
     - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[2].audioClip.Array.data[1]'
+      propertyPath: 'soundAudioClipArray.Array.data[12].audioClip.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 8857406443318984dab13cc5e2b5410d, type: 3}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[2].audioClip.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 2e97d495cafef4549b9346322b60672b, type: 3}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[2].audioClip.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: fff0e88181a29524ea405363e8556d15, type: 3}
+      objectReference: {fileID: 8300000, guid: 7c4ce4f255b577f49bb835f226d3e179, type: 3}
     - target: {fileID: 8628599106091503446, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -2470,10 +2458,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 379477031932411370, guid: 3f19bd8502bb0c34380a4c2134ffaf19, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 666252595}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f19bd8502bb0c34380a4c2134ffaf19, type: 3}
 --- !u!1 &628042794
 GameObject:
@@ -2683,23 +2668,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633940137}
   m_CullTransparentMesh: 1
---- !u!1 &666252592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 379477031932411370, guid: 3f19bd8502bb0c34380a4c2134ffaf19, type: 3}
-  m_PrefabInstance: {fileID: 604344881}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &666252595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666252592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4297fd57d27d4d45a72764d29d09a67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameHandler
 --- !u!1 &709347447
 GameObject:
   m_ObjectHideFlags: 0

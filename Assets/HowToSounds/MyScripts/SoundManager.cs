@@ -32,6 +32,8 @@ public static class SoundManager {
         PortalSound,
         PortalEnter,
         ItemCollect,
+        ButtonClick,
+        ButtonOver
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -43,6 +45,7 @@ public static class SoundManager {
         soundTimerDictionary[Sound.PlayerWalk] = 0f;
         soundTimerDictionary[Sound.PlayerRun] = 0f;
         soundTimerDictionary[Sound.PlayerCrouchWalk] = 0f;
+        soundTimerDictionary[Sound.PortalSound] = 0f;
 
     }
 
@@ -136,6 +139,11 @@ public static class SoundManager {
         }
         Debug.LogError("Sound " + sound + " not found!");
         return 0.5f;
+    }
+    public static void AddButtonSounds(this Button_UI buttonUI)
+    {
+        buttonUI.ClickFunc += () => SoundManager.PlaySound(Sound.ButtonClick);
+        buttonUI.MouseOverOnceFunc += () => SoundManager.PlaySound(Sound.ButtonOver);
     }
 
 }

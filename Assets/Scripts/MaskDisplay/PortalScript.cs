@@ -14,12 +14,13 @@ public class PortalScript : MonoBehaviour
 
         if (enteredObject.CompareTag("Player"))
         {
-            /*if (enteredObject.GetComponent<InventoryManager>().isIN.Length == levelMaskAmount)
+            if (GameHandler.I.ownedItems.Count == levelMaskAmount)
             {
-                Debug.Log("PORTALLLLLLLL");
-                
-            }*/
-            SceneManager.LoadScene(levelNum + 1);
+                SceneManager.LoadScene(levelNum + 1);
+                SoundManager.PlaySound(SoundManager.Sound.PortalSound, transform.position);
+            }
+            
         }
     }
+
 }
