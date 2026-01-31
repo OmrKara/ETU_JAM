@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Dialogues
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   dialogues:
-  - "Y\xFCr\xFCme"
-  - "E\u011Filme"
-  - "Ko\u015Fma"
-  - "Z\u0131plama"
   - Maske takma
+  - "Y\xFCr\xFCme"
+  - "Z\u0131plama"
+  - "Ko\u015Fma"
+  - Sprint
+  - "E\u011Filme"
   - "Level ge\xE7me"
