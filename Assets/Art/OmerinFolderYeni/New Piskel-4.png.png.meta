@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 42d124198ea97bb4db8e378ace14a442
+guid: 124c2a9e32bed7c4b99f9149e6b0a064
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8632807521500629345
-    second: Shadows_0
+      213: 6948402585382724860
+    second: New Piskel-4.png_0
+  - first:
+      213: -6934207782962014316
+    second: New Piskel-4.png_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -74,7 +77,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,111 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shadows_0
+      name: New Piskel-4.png_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 64
-        height: 64
+        x: 815
+        y: 703
+        width: 130
+        height: 66
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f9672aa3c4b123880800000000000000
-      internalID: -8632807521500629345
+      spriteID: cf4a422565fad6060800000000000000
+      internalID: 6948402585382724860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shadows_1
+      name: New Piskel-4.png_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
+        x: 47
+        y: 319
+        width: 434
+        height: 210
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 753f7d7197deb61489a33f3f5c2ef446
-      internalID: -626270833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shadows_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7d2acbcffc7e79438a656a363a6b92e
-      internalID: -993209288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shadows_3
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38d02ccadc0590542b2518d0b4be5e96
-      internalID: 1435013979
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shadows_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb002cb088f91de49b6b3d82774ce864
-      internalID: -1793797635
+      spriteID: 497dcc9a2ceb4cf90800000000000000
+      internalID: -6934207782962014316
       vertices: []
       indices: 
       edges: []
@@ -213,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8b882d0f833c6ae4a8ab76be545f6f3d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -221,15 +158,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Shadows_0: -8632807521500629345
-      Shadows_1: -626270833
-      Shadows_2: -993209288
-      Shadows_3: 1435013979
-      Shadows_4: -1793797635
+      New Piskel-4.png_0: 6948402585382724860
+      New Piskel-4.png_1: -6934207782962014316
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
