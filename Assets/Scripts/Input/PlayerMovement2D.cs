@@ -159,7 +159,7 @@ public class PlayerMovement2D : MonoBehaviour
         // Timers
         coyoteTimer = isGrounded ? coyoteTime : coyoteTimer - Time.deltaTime;
 
-        if (input.JumpPressed) bufferTimer = jumpBuffer;
+        if (input.JumpPressed && !isCrouching) bufferTimer = jumpBuffer;
         else bufferTimer -= Time.deltaTime;
 
         // Facing flip
