@@ -50,4 +50,42 @@ public class LevelManager : MonoBehaviour
 
         }
     }
-}
+
+    public static void ActivateTilemapWithoutCollision(Tilemap tilemap)
+    {
+        if (tilemap == null) return;
+
+        tilemap.gameObject.SetActive(true);
+
+        // Collision kapat
+        var collider = tilemap.GetComponent<TilemapCollider2D>();
+        if (collider != null) collider.enabled = false;
+
+        var composite = tilemap.GetComponent<CompositeCollider2D>();
+        if (composite != null) composite.enabled = false;
+
+        // Alpha %50 (DOÐRU YER)
+        Color c = tilemap.color;
+        c.a = 0.5f;
+        tilemap.color = c;
+    }
+    public static void RestoreTilemap(Tilemap tilemap)
+    {
+        if (tilemap == null) return;
+
+        tilemap.gameObject.SetActive(true);
+
+        // Collision aç
+        var collider = tilemap.GetComponent<TilemapCollider2D>();
+        if (collider != null) collider.enabled = true;
+
+        var composite = tilemap.GetComponent<CompositeCollider2D>();
+        if (composite != null) composite.enabled = true;
+
+        // Alpha %100
+        Color c = tilemap.color;
+        c.a = 1f;
+        tilemap.color = c;
+    }
+
+    }
