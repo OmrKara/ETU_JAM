@@ -20,6 +20,8 @@ public class PortalScript : MonoBehaviour
                 
             }*/
             SceneManager.LoadScene(levelNum + 1);
+            SoundManager.PlaySound(SoundManager.Sound.PortalSound, transform.position);
         }
     }
+
 }

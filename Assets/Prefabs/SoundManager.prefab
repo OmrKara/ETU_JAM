@@ -93,7 +93,7 @@ MonoBehaviour:
   - sound: 8
     audioClip:
     - {fileID: 0}
-    coolDown: 0
+    coolDown: 0.1
     volumeMultiply: 0.5
   - sound: 9
     audioClip:
@@ -105,3 +105,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 83d702f408ca8c440a9e0619e3f9e3ee, type: 3}
     coolDown: 0
     volumeMultiply: 0.5
+  - sound: 11
+    audioClip:
+    - {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+    coolDown: 0
+    volumeMultiply: 2
+  - sound: 12
+    audioClip:
+    - {fileID: 8300000, guid: 9dc4ea2dd20dab74b96b346e8aabbfb8, type: 3}
+    coolDown: 0
+    volumeMultiply: 2

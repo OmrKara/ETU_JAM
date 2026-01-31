@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8722019748104916039}
@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3801046784186053851, guid: e5150baeecbdef44ea9731f42df40497, type: 3}
+  m_Sprite: {fileID: -3036595247914058858, guid: c316b5a26902fc6459a143157a594fca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.15, y: 0.15}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,11 +100,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8722019748104916039}
-  - component: {fileID: 5387716580661982412}
   - component: {fileID: 7153524661833419420}
   - component: {fileID: 732226756188209479}
+  - component: {fileID: 8090645700762656135}
   m_Layer: 0
-  m_Name: LootDefault
+  m_Name: MaskGreenShard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,29 +119,13 @@ Transform:
   m_GameObject: {fileID: 7086467165452987344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38053, y: -0.74181, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.313, y: -2.49, z: 0}
+  m_LocalScale: {x: 0.87272, y: 0.87272, z: 0.87272}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1633020503598085205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5387716580661982412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7086467165452987344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801d1afd5ba5adb4c8670112ad56f693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Loot
-  itemSO: {fileID: 0}
-  sr: {fileID: 4998938560127096471}
-  anim: {fileID: 7153524661833419420}
-  quantity: 1
 --- !u!95 &7153524661833419420
 Animator:
   serializedVersion: 7
@@ -200,3 +184,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &8090645700762656135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086467165452987344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6400c19179c191b439878dbcd090aaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemType: 1
+  uiImage: {fileID: 0}
+  animator: {fileID: 7153524661833419420}
+  collectTrigger: Collect
+  destroyDelay: 0.5
