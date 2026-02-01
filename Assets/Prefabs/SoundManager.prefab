@@ -115,3 +115,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9dc4ea2dd20dab74b96b346e8aabbfb8, type: 3}
     coolDown: 0
     volumeMultiply: 2
+  - sound: 12
+    audioClip:
+    - {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
+    coolDown: 0
+    volumeMultiply: 2
+  - sound: 12
+    audioClip:
+    - {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
+    coolDown: 0
+    volumeMultiply: 2
