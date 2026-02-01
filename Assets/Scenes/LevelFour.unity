@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3912feedd030242409403d4c1805d7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SharkScript
-  velocity: 0
+  velocity: 2
 --- !u!4 &476841822
 Transform:
   m_ObjectHideFlags: 0
