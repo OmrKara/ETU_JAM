@@ -9,9 +9,9 @@ public class ChickenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = -9f;
+        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = -5f;
 
-        if (gameObject.transform.position.y < -7.5)
+        if (gameObject.transform.position.y < -10)
         {
             gameObject.SetActive(false);
         }
