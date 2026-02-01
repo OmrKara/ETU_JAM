@@ -675,6 +675,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834469742272042817, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1849820940}
     - target: {fileID: 6719874796948946620, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Name
       value: "FallenSark\u0131t"
@@ -1957,6 +1961,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834469742272042817, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1849820940}
     - target: {fileID: 6719874796948946620, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Name
       value: "FallenSark\u0131t (2)"
@@ -2030,6 +2038,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4834469742272042817, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1849820940}
     - target: {fileID: 6719874796948946620, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Name
       value: "FallenSark\u0131t (1)"
