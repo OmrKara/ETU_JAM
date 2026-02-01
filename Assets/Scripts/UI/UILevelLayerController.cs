@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class UILevelLayerController : MonoBehaviour
 {
+    public GameObject SiyahPanel;
     [Header("UI Buttons (boş bırakılabilir)")]
     [SerializeField] private Button[] buttons;
 
@@ -27,6 +28,10 @@ public class UILevelLayerController : MonoBehaviour
     private int pointerOverIndex = -1;
 
     private void Update() { playerCollider = PlayerMovement2D.i.collider; }
+    private void Start()
+    {
+        SiyahPanel.SetActive(false);
+    }
     void Awake()
     {
         int n = Mathf.Max(buttons?.Length ?? 0, layers?.Length ?? 0);
