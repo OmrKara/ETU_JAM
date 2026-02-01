@@ -17,16 +17,16 @@ public class UILevelLayerController : MonoBehaviour
     // Kalıcı açık mı?
     private bool[] toggledOn;
 
-    // Hover preview açıldı mı? (tilemap kapalıyken preview modu)
+    // Tilemap kapalıyken hover preview açıldı mı?
     private bool[] previewOpened;
 
-    // Tilemap AÇIKKEN hover oldu mu? (sadece alpha düşürme)
+    // Tilemap AÇIKKEN hover olunca sadece alpha düşürme aktif mi?
     private bool[] dimmedWhileOpen;
 
-    // Tilemap AÇIKKEN hover sırasında tıklanıp kapatıldı mı?
-    // Exit geldiğinde hiçbir şey değiştirmemek için.
-    private bool[] closedOnClickWhileDimmed;
+    // Pointer şu an hangi index üstünde? (hover ile güncellenir)
+    private int pointerOverIndex = -1;
 
+    private void Update() { playerCollider = PlayerMovement2D.i.collider; }
     void Awake()
     {
         int n = Mathf.Max(buttons?.Length ?? 0, layers?.Length ?? 0);
@@ -39,7 +39,6 @@ public class UILevelLayerController : MonoBehaviour
         toggledOn = new bool[n];
         previewOpened = new bool[n];
         dimmedWhileOpen = new bool[n];
-        closedOnClickWhileDimmed = new bool[n];
 
         // Başlangıçta layer'ları kapat
         for (int i = 0; i < n; i++)
@@ -47,7 +46,6 @@ public class UILevelLayerController : MonoBehaviour
             toggledOn[i] = false;
             previewOpened[i] = false;
             dimmedWhileOpen[i] = false;
-            closedOnClickWhileDimmed[i] = false;
 
             GameObject layerObj = GetLayerObj(i);
             if (layerObj != null)
@@ -67,8 +65,8 @@ public class UILevelLayerController : MonoBehaviour
             HoverHandler h = btn.GetComponent<HoverHandler>();
             if (h == null) h = btn.gameObject.AddComponent<HoverHandler>();
             h.Init(
-                () => HoverLayer(index),
-                () => ExitLayer(index)
+                onEnter: () => { pointerOverIndex = index; HoverLayer(index); },
+                onExit: () => { if (pointerOverIndex == index) pointerOverIndex = -1; ExitLayer(index); }
             );
 
             // Click
@@ -87,24 +85,27 @@ public class UILevelLayerController : MonoBehaviour
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
 
-        // Eğer tilemap AÇIK ve hover ile sadece dimmed durumdaysa:
-        // -> tıklanınca renk düzeltilip tilemap kapanacak
+        // 1) Tilemap AÇIK ve dimmed iken tıklanırsa:
+        // -> alpha 1 + tilemap KAPANIR
         if (toggledOn[index] && dimmedWhileOpen[index])
         {
-            // renk düzelt
             SetAlpha(tm, 1f);
 
-            // kapat
             toggledOn[index] = false;
             dimmedWhileOpen[index] = false;
             previewOpened[index] = false;
 
-            closedOnClickWhileDimmed[index] = true; // Exit geldiğinde dokunma
             tm.gameObject.SetActive(false);
+
+            // ✅ KAPATILDI AMA POINTER HÂLÂ BU BUTTON ÜSTÜNDEYSE:
+            // Unity yeni PointerEnter göndermeyeceği için manuel hover çağır
+            if (IsPointerStillOverThisButton(index))
+                HoverLayer(index);
+
             return;
         }
 
-        // Normal toggle:
+        // 2) Normal toggle
         bool wantOpen = !toggledOn[index];
 
         if (wantOpen)
@@ -112,14 +113,13 @@ public class UILevelLayerController : MonoBehaviour
             // Kapalıyken açılacak: player tile'larla çakışıyorsa açma
             if (playerCollider != null && IsPlayerOverlappingTilemap(tm, playerCollider))
             {
-                // preview flaglerine dokunma (hover kapatma Exit ile)
+                // preview state’ine dokunma, exit düzgün kapatsın
                 return;
             }
 
             toggledOn[index] = true;
             previewOpened[index] = false;
             dimmedWhileOpen[index] = false;
-            closedOnClickWhileDimmed[index] = false;
 
             RestoreToNormal(tm); // aktif + collider açık + alpha 1
         }
@@ -128,9 +128,12 @@ public class UILevelLayerController : MonoBehaviour
             toggledOn[index] = false;
             previewOpened[index] = false;
             dimmedWhileOpen[index] = false;
-            closedOnClickWhileDimmed[index] = false;
 
             tm.gameObject.SetActive(false);
+
+            // ✅ kapatınca pointer hâlâ üstündeyse hover preview devam etsin
+            if (IsPointerStillOverThisButton(index))
+                HoverLayer(index);
         }
     }
 
@@ -147,14 +150,14 @@ public class UILevelLayerController : MonoBehaviour
         // Tilemap AÇIKKEN: collision'a dokunma, sadece alpha 0.5
         if (toggledOn[index])
         {
-            if (dimmedWhileOpen[index]) return; // zaten dimmed
+            if (dimmedWhileOpen[index]) return;
+
             dimmedWhileOpen[index] = true;
-            closedOnClickWhileDimmed[index] = false; // yeni hover başladı
             SetAlpha(tm, 0.5f);
             return;
         }
 
-        // Tilemap KAPALIYKEN: preview modu (aktif et + collider kapalı + alpha 0.5)
+        // Tilemap KAPALIYKEN: preview modu
         if (previewOpened[index]) return;
 
         previewOpened[index] = true;
@@ -171,18 +174,8 @@ public class UILevelLayerController : MonoBehaviour
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
 
-        // Eğer hover sırasında tıklandı ve kapandıysa: Exit'te hiçbir şey yapma
-        if (closedOnClickWhileDimmed[index])
-        {
-            // Bir sonraki hover döngüsüne hazırla
-            closedOnClickWhileDimmed[index] = false;
-            dimmedWhileOpen[index] = false;
-            previewOpened[index] = false;
-            return;
-        }
-
-        // Tilemap AÇIKKEN hover dimmed olduysa ve tıklanmadıysa:
-        // -> Exit'te rengi eski haline döndür
+        // Tilemap AÇIKKEN dimmed olduysa ve tıklanmadıysa:
+        // -> Exit'te alpha 1'e dön
         if (toggledOn[index] && dimmedWhileOpen[index])
         {
             dimmedWhileOpen[index] = false;
@@ -190,13 +183,27 @@ public class UILevelLayerController : MonoBehaviour
             return;
         }
 
-        // Tilemap KAPALIYKEN preview açık ise:
+        // Tilemap KAPALIYKEN preview açıksa:
         // -> Exit'te preview kapat
         if (!toggledOn[index] && previewOpened[index])
         {
             previewOpened[index] = false;
             RestorePreviewAndDisable(tm);
         }
+    }
+
+    // =========================
+    // Pointer hâlâ bu button üstünde mi?
+    // (New Input System uyumlu)
+    // =========================
+    private bool IsPointerStillOverThisButton(int index)
+    {
+        // EventSystem pointer'ın UI üzerinde olup olmadığını bilir (mouse/touch/pen hepsi)
+        if (EventSystem.current == null) return false;
+        if (!EventSystem.current.IsPointerOverGameObject()) return false;
+
+        // En son hover aldığımız index hâlâ aynıysa "üstünde" varsay
+        return pointerOverIndex == index;
     }
 
     // =========================
@@ -256,7 +263,6 @@ public class UILevelLayerController : MonoBehaviour
 
     private static void RestorePreviewAndDisable(Tilemap tilemap)
     {
-        // güvenli restore
         var col = tilemap.GetComponent<TilemapCollider2D>();
         if (col) col.enabled = true;
 
@@ -264,7 +270,6 @@ public class UILevelLayerController : MonoBehaviour
         if (comp) comp.enabled = true;
 
         SetAlpha(tilemap, 1f);
-
         tilemap.gameObject.SetActive(false);
     }
 
@@ -318,10 +323,10 @@ public class UILevelLayerController : MonoBehaviour
         private System.Action onEnter;
         private System.Action onExit;
 
-        public void Init(System.Action enter, System.Action exit)
+        public void Init(System.Action onEnter, System.Action onExit)
         {
-            onEnter = enter;
-            onExit = exit;
+            this.onEnter = onEnter;
+            this.onExit = onExit;
         }
 
         public void OnPointerEnter(PointerEventData eventData) => onEnter?.Invoke();
