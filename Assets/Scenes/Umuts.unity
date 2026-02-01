@@ -1539,8 +1539,8 @@ Canvas:
   m_GameObject: {fileID: 520118732}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 8055103726612510244}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4037,19 +4037,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8203886580612434557}
   m_Enabled: 1
---- !u!114 &822865850226207799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203886580612434557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec43388b1624db04e83f5ae661894fa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  targetAspect: 1.7777778
 --- !u!114 &5435866259722636263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4172,7 +4159,7 @@ GameObject:
   - component: {fileID: 8055103726612510244}
   - component: {fileID: 71949917212954688}
   - component: {fileID: 5435866259722636263}
-  - component: {fileID: 822865850226207799}
+  - component: {fileID: 8203886580612434558}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4180,6 +4167,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8203886580612434558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203886580612434557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9420f5aea32df7646ab1a75a6346d5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LetterBoxer
+  matteColor: {r: 0, g: 0, b: 0, a: 1}
+  referenceMode: 0
+  x: 16
+  y: 9
+  width: 960
+  height: 540
+  onAwake: 1
+  onUpdate: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

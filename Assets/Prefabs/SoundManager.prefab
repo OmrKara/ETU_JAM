@@ -89,7 +89,7 @@ MonoBehaviour:
     audioClip:
     - {fileID: 8300000, guid: 37cbc04448598334b9f8b2b416deabc5, type: 3}
     coolDown: 0
-    volumeMultiply: 2
+    volumeMultiply: 2.5
   - sound: 8
     audioClip:
     - {fileID: 8300000, guid: 979fdc9b1aa2810488dcbd024d521d95, type: 3}

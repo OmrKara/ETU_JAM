@@ -217,7 +217,7 @@ MonoBehaviour:
   inputBehaviour: {fileID: 0}
   maxWalkSpeed: 2.5
   maxCrouchSpeed: 1
-  maxRunSpeed: 7
+  maxRunSpeed: 5
   groundAccel: 90
   groundDecel: 110
   airAccel: 70
@@ -340,8 +340,8 @@ MonoBehaviour:
   disableDuringDash:
   - {fileID: 1538675656935568054}
   dashSpeed: 5
-  dashDuration: 0.15
-  dashCooldown: 0.25
+  dashDuration: 0.13
+  dashCooldown: 0.4
   inputDeadzone: 0.05
   disableGravityDuringDash: 1
   zeroYVelocityOnStart: 1

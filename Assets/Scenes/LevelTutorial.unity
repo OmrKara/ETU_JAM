@@ -426,8 +426,8 @@ Canvas:
   m_GameObject: {fileID: 224822200}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1424213001}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -11343,6 +11343,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2744240432493541517, guid: a502bf16252114b4cbda5daf451af074, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1424213001}
+    - target: {fileID: 2744240432493541517, guid: a502bf16252114b4cbda5daf451af074, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2744240432493541517, guid: a502bf16252114b4cbda5daf451af074, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2822454792554695827, guid: a502bf16252114b4cbda5daf451af074, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11833,10 +11845,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1424212998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec43388b1624db04e83f5ae661894fa5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9420f5aea32df7646ab1a75a6346d5df, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ForceAspectRatio
-  targetAspect: 1.7777778
+  m_EditorClassIdentifier: Assembly-CSharp::LetterBoxer
+  matteColor: {r: 0, g: 0, b: 0, a: 1}
+  referenceMode: 0
+  x: 16
+  y: 9
+  width: 960
+  height: 540
+  onAwake: 1
+  onUpdate: 1
 --- !u!1 &1425028643 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7758979350363522835, guid: a502bf16252114b4cbda5daf451af074, type: 3}

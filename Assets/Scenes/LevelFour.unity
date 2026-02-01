@@ -1395,6 +1395,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2744240432493541517, guid: a502bf16252114b4cbda5daf451af074, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1486924705}
     - target: {fileID: 2822454792554695827, guid: a502bf16252114b4cbda5daf451af074, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -37778,10 +37782,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486924702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec43388b1624db04e83f5ae661894fa5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9420f5aea32df7646ab1a75a6346d5df, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ForceAspectRatio
-  targetAspect: 1.7777778
+  m_EditorClassIdentifier: Assembly-CSharp::LetterBoxer
+  matteColor: {r: 0, g: 0, b: 0, a: 1}
+  referenceMode: 0
+  x: 16
+  y: 9
+  width: 960
+  height: 540
+  onAwake: 1
+  onUpdate: 1
 --- !u!1001 &1493058824
 PrefabInstance:
   m_ObjectHideFlags: 0
