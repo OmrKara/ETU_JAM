@@ -36789,14 +36789,14 @@ Tilemap:
   m_Origin: {x: -27, y: -16, z: 0}
   m_Size: {x: 60, y: 31, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
+  m_TileOrientation: 6
   m_TileOrientationMatrix:
     e00: 1
     e01: 0
     e02: 0
     e03: 0
     e10: 0
-    e11: 1
+    e11: 1.025
     e12: 0
     e13: 0
     e20: 0
@@ -44147,14 +44147,14 @@ Tilemap:
   m_Origin: {x: -24, y: -15, z: 0}
   m_Size: {x: 57, y: 30, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
+  m_TileOrientation: 6
   m_TileOrientationMatrix:
     e00: 1
     e01: 0
     e02: 0
     e03: 0
     e10: 0
-    e11: 1
+    e11: 1.025
     e12: 0
     e13: 0
     e20: 0
