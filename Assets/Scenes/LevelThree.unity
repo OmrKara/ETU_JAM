@@ -21121,42 +21121,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[13].sound
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[14].sound
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[13].volumeMultiply
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[14].volumeMultiply
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[13].audioClip.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[14].audioClip.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[13].audioClip.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
-    - target: {fileID: 8084186924045926531, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
-      propertyPath: 'soundAudioClipArray.Array.data[14].audioClip.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
     - target: {fileID: 8628599106091503446, guid: c3103f5d34e856d42a018ed9649b2249, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -26745,6 +26709,7 @@ MonoBehaviour:
   - {fileID: 1903127844}
   - {fileID: 1384608265}
   - {fileID: 1278458070}
+  items: []
   layerMaskAmount: 5
 --- !u!4 &1889489316
 Transform:
