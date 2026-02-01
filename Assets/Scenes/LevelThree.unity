@@ -4588,6 +4588,7 @@ GameObject:
   - component: {fileID: 177294748}
   - component: {fileID: 177294750}
   - component: {fileID: 177294749}
+  - component: {fileID: 177294751}
   m_Layer: 0
   m_Name: "FallenSark\u0131t"
   m_TagString: Untagged
@@ -4623,6 +4624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54fca94b1ed0fd4895bf805f3b8ff52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::FallenSark\u0131t"
+  spawnPoint: {fileID: 557078432}
 --- !u!50 &177294750
 Rigidbody2D:
   serializedVersion: 5
@@ -4650,6 +4652,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &177294751
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177294747}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0025070906, y: 0.030085564}
+  m_Size: {x: 0.45487142, y: 0.8595996}
+  m_Direction: 0
 --- !u!1 &251484246
 GameObject:
   m_ObjectHideFlags: 0
@@ -17221,7 +17260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1088802278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17234,7 +17273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b565ae93796f741b5b66ec68f50153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::Sark\u0131tScript"
-  spawnPoint: {fileID: 0}
 --- !u!4 &1088802279
 Transform:
   m_ObjectHideFlags: 0

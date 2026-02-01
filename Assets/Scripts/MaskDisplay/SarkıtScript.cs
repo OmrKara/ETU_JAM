@@ -9,7 +9,6 @@ public class SarkıtScript : MonoBehaviour
 
         if (obj.CompareTag("Player"))
         {
-            PlayerMovement2D.i.gameObject.transform.position = spawnPoint.position;
         }
     }
 }
