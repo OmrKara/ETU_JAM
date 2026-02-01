@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LevelTuto
   m_EditorClassIdentifier: Assembly-CSharp::Level
   levelNum: 1
-  itemAmount: 0
+  itemAmount: 1
   layerMaskAmount: 3
