@@ -9423,14 +9423,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1371132703366552016, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371132703366552016, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371132703366552016, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.58
       objectReference: {fileID: 0}
@@ -9475,37 +9467,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1538675656935568054, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: airAccel
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1538675656935568054, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: jumpVelocity
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1538675656935568054, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: maxWalkSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1538675656935568054, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
       propertyPath: inputBehaviour
       value: 
       objectReference: {fileID: 144422785}
-    - target: {fileID: 1538675656935568054, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3619746509957143644, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3619746509957143644, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136253311178395382, guid: 02b10623262feaa4ca3673816ce1c070, type: 3}
-      propertyPath: solidLayer.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20266,6 +20230,7 @@ MonoBehaviour:
   - {fileID: 458402229}
   - {fileID: 0}
   - {fileID: 0}
+  playerCollider: {fileID: 0}
 --- !u!1 &1288897929
 GameObject:
   m_ObjectHideFlags: 0

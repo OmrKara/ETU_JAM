@@ -5,92 +5,96 @@ using UnityEngine.Tilemaps;
 
 public class UILevelLayerController : MonoBehaviour
 {
-    [Header("UI (aynı sırada: 0..n-1)")]
+    [Header("UI Buttons (boş bırakılabilir)")]
     [SerializeField] private Button[] buttons;
 
-    [Header("Layers (aynı sırada: 0..n-1)")]
+    [Header("Tilemap Layers (boş bırakılabilir)")]
     [SerializeField] private GameObject[] layers;
 
-    [Header("Block rule")]
-    [Tooltip("Player'ın Collider2D'sini buraya ver. Player bu tilemap ile çakışıyorsa click ile açma engellenecek.")]
+    [Header("Player")]
     [SerializeField] private Collider2D playerCollider;
 
-    // click ile kalıcı açık mı?
+    // State (index bazlı)
     private bool[] toggledOn;
-
-    // hover ile preview açıldı mı?
     private bool[] previewOpened;
 
+    private void Start()
+    {
+        playerCollider = PlayerMovement2D.i.collider;
+    }
     void Awake()
     {
-        int n = Mathf.Min(buttons?.Length ?? 0, layers?.Length ?? 0);
-        if (n <= 0)
+        int n = Mathf.Max(buttons?.Length ?? 0, layers?.Length ?? 0);
+        if (n == 0)
         {
-            Debug.LogError("[UILevelLayerController] Buttons/Layers boş veya eşleşmiyor.");
+            Debug.LogError("[UILevelLayerController] Buttons/Layers array boş.");
             return;
         }
-
-        if (playerCollider == null)
-            playerCollider = PlayerMovement2D.i.gameObject.GetComponentInChildren<Collider2D>();
 
         toggledOn = new bool[n];
         previewOpened = new bool[n];
 
+        // Başlangıçta var olan layer'ları kapat
         for (int i = 0; i < n; i++)
         {
             toggledOn[i] = false;
             previewOpened[i] = false;
 
-            if (layers[i] != null)
-                layers[i].SetActive(false);
+            GameObject layerObj = GetLayerObj(i);
+            if (layerObj != null)
+                layerObj.SetActive(false);
         }
 
+        // Sadece button+layer ikisi de varsa bağla
         for (int i = 0; i < n; i++)
         {
+            Button btn = GetButton(i);
+            GameObject layerObj = GetLayerObj(i);
+
+            if (btn == null || layerObj == null)
+                continue; // ✅ boş slot: atla
+
             int index = i;
 
-            if (buttons[index] == null) continue;
-
-            var handler = buttons[index].gameObject.GetComponent<HoverHandler>();
-            if (handler == null) handler = buttons[index].gameObject.AddComponent<HoverHandler>();
-            handler.Init(
-                onEnter: () => HoverLayer(index),
-                onExit: () => ExitLayer(index)
+            // Hover/Exit handler (varsa yeniden ekleme)
+            HoverHandler h = btn.GetComponent<HoverHandler>();
+            if (h == null) h = btn.gameObject.AddComponent<HoverHandler>();
+            h.Init(
+                () => HoverLayer(index),
+                () => ExitLayer(index)
             );
 
-            buttons[index].onClick.AddListener(() => ManageLayer(index));
+            // Click: çift listener olmasın diye önce temizle
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => ManageLayer(index));
         }
     }
 
     // =========================
-    // CLICK: kalıcı aç/kapat
+    // CLICK (kalıcı aç/kapat)
     // =========================
     public void ManageLayer(int index)
     {
-        if (!IsValid(index)) return;
+        if (!HasValidPair(index)) return;
 
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
 
-        bool newState = !toggledOn[index];
+        bool wantOpen = !toggledOn[index];
 
-        if (newState)
+        if (wantOpen)
         {
-            // ✅ KURAL: Player bu tilemap'in dolu tile alanıyla çakışıyorsa AÇMA
+            // ❌ Player tilemap ile çakışıyorsa AÇMA
+            // Tilemap boşsa zaten false döner ve bloklamaz.
             if (playerCollider != null && IsPlayerOverlappingTilemap(tm, playerCollider))
             {
-                // toggle geri
-                toggledOn[index] = false;
-                previewOpened[index] = false;
-
-                // İstersen burada uyarı sesi/animasyonu tetiklersin
-                // Debug.Log("Blocked: Player is overlapping tilemap. Can't open.");
+                // ⚠️ previewOpened'a dokunma → exit düzgün kapatsın
                 return;
             }
 
             toggledOn[index] = true;
             previewOpened[index] = false;
-            RestoreToNormal(tm); // aktif + collider açık + alpha 1
+            RestoreToNormal(tm);
         }
         else
         {
@@ -101,11 +105,11 @@ public class UILevelLayerController : MonoBehaviour
     }
 
     // =========================
-    // HOVER: sadece preview aç
+    // HOVER (preview aç)
     // =========================
     public void HoverLayer(int index)
     {
-        if (!IsValid(index)) return;
+        if (!HasValidPair(index)) return;
         if (toggledOn[index]) return;
         if (previewOpened[index]) return;
 
@@ -117,11 +121,11 @@ public class UILevelLayerController : MonoBehaviour
     }
 
     // =========================
-    // EXIT: sadece preview kapat
+    // EXIT (preview kapat)
     // =========================
     public void ExitLayer(int index)
     {
-        if (!IsValid(index)) return;
+        if (!HasValidPair(index)) return;
         if (toggledOn[index]) return;
         if (!previewOpened[index]) return;
 
@@ -133,117 +137,74 @@ public class UILevelLayerController : MonoBehaviour
     }
 
     // =========================
-    // Tilemap yardımcıları
+    // Helpers (null-safe)
     // =========================
+    private Button GetButton(int index)
+    {
+        if (buttons == null) return null;
+        if (index < 0 || index >= buttons.Length) return null;
+        return buttons[index];
+    }
+
+    private GameObject GetLayerObj(int index)
+    {
+        if (layers == null) return null;
+        if (index < 0 || index >= layers.Length) return null;
+        return layers[index];
+    }
+
+    private bool HasValidPair(int index)
+    {
+        return GetButton(index) != null && GetLayerObj(index) != null;
+    }
+
     private Tilemap GetTilemap(int index)
     {
-        if (layers[index] == null) return null;
-        return layers[index].GetComponent<Tilemap>();
+        GameObject obj = GetLayerObj(index);
+        if (obj == null) return null;
+        return obj.GetComponent<Tilemap>();
     }
 
-    private bool IsValid(int index)
-    {
-        return toggledOn != null && index >= 0 && index < toggledOn.Length;
-    }
-
-    // =========================================================
-    // ✅ PLAYER - TILEMAP overlap kontrolü (tile data üzerinden)
-    // =========================================================
-    private static bool IsPlayerOverlappingTilemap(Tilemap tilemap, Collider2D playerCol)
-    {
-        if (tilemap == null || playerCol == null) return false;
-
-        Bounds pb = playerCol.bounds;
-
-        // Player bounds'un kapsadığı cell aralığı
-        Vector3Int min = tilemap.WorldToCell(pb.min);
-        Vector3Int max = tilemap.WorldToCell(pb.max);
-
-        // Tilemap cell size (world)
-        Vector3 cellSize = tilemap.cellSize;
-        Vector2 half = new Vector2(cellSize.x * 0.5f, cellSize.y * 0.5f);
-
-        // Küçük güvenlik: z çok önemli değil, 2D’de x-y bakıyoruz
-        for (int x = min.x; x <= max.x; x++)
-        {
-            for (int y = min.y; y <= max.y; y++)
-            {
-                Vector3Int cell = new Vector3Int(x, y, 0);
-
-                if (!tilemap.HasTile(cell))
-                    continue;
-
-                // cell'in world rect'i (tile anchor/offset farklıysa yine de iyi çalışır)
-                Vector3 center3 = tilemap.GetCellCenterWorld(cell);
-                Vector2 center = new Vector2(center3.x, center3.y);
-
-                // Tile rect bounds
-                float left = center.x - half.x;
-                float right = center.x + half.x;
-                float bottom = center.y - half.y;
-                float top = center.y + half.y;
-
-                // Player bounds ile kesişim kontrolü
-                if (pb.max.x > left && pb.min.x < right && pb.max.y > bottom && pb.min.y < top)
-                    return true;
-            }
-        }
-
-        return false;
-    }
-
-    // -------------------------
-    // PREVIEW ON (hover)
-    // -------------------------
+    // =========================
+    // Tilemap Modları
+    // =========================
     private static void ActivatePreview(Tilemap tilemap)
     {
-        if (tilemap == null) return;
-
         tilemap.gameObject.SetActive(true);
 
-        var collider = tilemap.GetComponent<TilemapCollider2D>();
-        if (collider != null) collider.enabled = false;
+        var col = tilemap.GetComponent<TilemapCollider2D>();
+        if (col) col.enabled = false;
 
-        var composite = tilemap.GetComponent<CompositeCollider2D>();
-        if (composite != null) composite.enabled = false;
+        var comp = tilemap.GetComponent<CompositeCollider2D>();
+        if (comp) comp.enabled = false;
 
         Color c = tilemap.color;
         c.a = 0.5f;
         tilemap.color = c;
     }
 
-    // -------------------------
-    // NORMAL ON (click aç)
-    // -------------------------
     private static void RestoreToNormal(Tilemap tilemap)
     {
-        if (tilemap == null) return;
-
         tilemap.gameObject.SetActive(true);
 
-        var collider = tilemap.GetComponent<TilemapCollider2D>();
-        if (collider != null) collider.enabled = true;
+        var col = tilemap.GetComponent<TilemapCollider2D>();
+        if (col) col.enabled = true;
 
-        var composite = tilemap.GetComponent<CompositeCollider2D>();
-        if (composite != null) composite.enabled = true;
+        var comp = tilemap.GetComponent<CompositeCollider2D>();
+        if (comp) comp.enabled = true;
 
         Color c = tilemap.color;
         c.a = 1f;
         tilemap.color = c;
     }
 
-    // -------------------------
-    // PREVIEW OFF (exit)
-    // -------------------------
     private static void RestorePreviewAndDisable(Tilemap tilemap)
     {
-        if (tilemap == null) return;
+        var col = tilemap.GetComponent<TilemapCollider2D>();
+        if (col) col.enabled = true;
 
-        var collider = tilemap.GetComponent<TilemapCollider2D>();
-        if (collider != null) collider.enabled = true;
-
-        var composite = tilemap.GetComponent<CompositeCollider2D>();
-        if (composite != null) composite.enabled = true;
+        var comp = tilemap.GetComponent<CompositeCollider2D>();
+        if (comp) comp.enabled = true;
 
         Color c = tilemap.color;
         c.a = 1f;
@@ -253,20 +214,55 @@ public class UILevelLayerController : MonoBehaviour
     }
 
     // =========================
-    // HOVER HANDLER (tek dosya)
+    // Player - Tilemap overlap
+    // (Tilemap boşsa false)
+    // =========================
+    private static bool IsPlayerOverlappingTilemap(Tilemap tilemap, Collider2D player)
+    {
+        Bounds pb = player.bounds;
+
+        Vector3Int min = tilemap.WorldToCell(pb.min);
+        Vector3Int max = tilemap.WorldToCell(pb.max);
+
+        Vector3 cellSize = tilemap.cellSize;
+        Vector2 half = cellSize * 0.5f;
+
+        for (int x = min.x; x <= max.x; x++)
+        {
+            for (int y = min.y; y <= max.y; y++)
+            {
+                Vector3Int cell = new Vector3Int(x, y, 0);
+                if (!tilemap.HasTile(cell)) continue;
+
+                Vector3 center = tilemap.GetCellCenterWorld(cell);
+
+                if (pb.max.x > center.x - half.x &&
+                    pb.min.x < center.x + half.x &&
+                    pb.max.y > center.y - half.y &&
+                    pb.min.y < center.y + half.y)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // =========================
+    // Hover Handler (tek dosya)
     // =========================
     private class HoverHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        private System.Action enter;
-        private System.Action exit;
+        private System.Action onEnter;
+        private System.Action onExit;
 
-        public void Init(System.Action onEnter, System.Action onExit)
+        public void Init(System.Action enter, System.Action exit)
         {
-            enter = onEnter;
-            exit = onExit;
+            onEnter = enter;
+            onExit = exit;
         }
 
-        public void OnPointerEnter(PointerEventData eventData) => enter?.Invoke();
-        public void OnPointerExit(PointerEventData eventData) => exit?.Invoke();
+        public void OnPointerEnter(PointerEventData eventData) => onEnter?.Invoke();
+        public void OnPointerExit(PointerEventData eventData) => onExit?.Invoke();
     }
 }

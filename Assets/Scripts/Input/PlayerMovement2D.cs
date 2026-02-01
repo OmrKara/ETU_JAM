@@ -5,6 +5,7 @@
 public class PlayerMovement2D : MonoBehaviour
 {
     public static PlayerMovement2D i;
+    public Collider2D collider;
 
     [Header("Input Source")]
     [SerializeField] private MonoBehaviour inputBehaviour;

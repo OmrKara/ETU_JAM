@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8768b8e66e308c4ba061014d8681289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 1329595378689488308}
   inputBehaviour: {fileID: 0}
   maxWalkSpeed: 2.5
   maxCrouchSpeed: 0.5
