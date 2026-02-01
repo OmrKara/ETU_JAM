@@ -70,10 +70,15 @@ public class GameHandler : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mod)
     {
+        IsPaused = false;
+        Time.timeScale = 1;
         SoundManager.Initialize();
-
+        ownedItems = new HashSet<ItemType>();
         BindAllButtons();
         DeactiveUI();
+        if (FindFirstObjectByType<PausePanel>(FindObjectsInactive.Include) !=  null)
+            FindFirstObjectByType<PausePanel>(FindObjectsInactive.Include).gameObject.SetActive(false);
+
     }
 
     public bool HasItem(ItemType item) => ownedItems.Contains(item);
