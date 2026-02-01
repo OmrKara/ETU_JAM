@@ -2,22 +2,33 @@ using UnityEngine;
 
 public class SharkScript : MonoBehaviour
 {
-    Random random;
-    void Awake()
-    {
 
+    public enum Facing
+    {
+        Left,
+        Right
     }
+
+    private float random;
+    private float range => (facing == Facing.Left) ? -random : random;
+    [SerializeField] private float velocity;
+
+    private Facing facing;
 
     void Start()
     {
-        random = new Random();
+        random = Random.Range(8, 4);
+        facing = Facing.Left;
     }
     void Update()
     {
-        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = -2;
-        if (gameObject.transform.position.x < -10)
+        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = (facing == Facing.Left) ? -velocity : velocity;
+        if (gameObject.transform.position.x < range)
         {
-            gameObject.SetActive(false);
+            random = Random.Range(8, 4);
+            facing = (facing == Facing.Left) ? Facing.Right : Facing.Left;
+            //bool b = gameObject.GetComponentInChildren<SpriteRenderer>().flipX;
+            gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !gameObject.GetComponentInChildren<SpriteRenderer>().flipX;
         }
     }
 }

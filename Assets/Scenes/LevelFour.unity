@@ -1680,6 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3912feedd030242409403d4c1805d7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SharkScript
+  velocity: 0
 --- !u!4 &476841822
 Transform:
   m_ObjectHideFlags: 0
@@ -36786,7 +36787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957561911537324489, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Size.x
-      value: 1.2519603
+      value: 1.4848008
       objectReference: {fileID: 0}
     - target: {fileID: 8957561911537324489, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Size.y
@@ -36794,7 +36795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8957561911537324489, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Offset.x
-      value: -0.12598014
+      value: -0.24240041
       objectReference: {fileID: 0}
     - target: {fileID: 8957561911537324489, guid: c5d2543f201f6a447b5ea4e1fb5f74b7, type: 3}
       propertyPath: m_Offset.y
