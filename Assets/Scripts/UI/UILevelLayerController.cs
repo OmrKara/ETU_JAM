@@ -11,17 +11,22 @@ public class UILevelLayerController : MonoBehaviour
     [Header("Tilemap Layers (boş bırakılabilir)")]
     [SerializeField] private GameObject[] layers;
 
-    [Header("Player")]
+    [Header("Player (kapalıyken açmayı engellemek için)")]
     [SerializeField] private Collider2D playerCollider;
 
-    // State (index bazlı)
+    // Kalıcı açık mı?
     private bool[] toggledOn;
+
+    // Hover preview açıldı mı? (tilemap kapalıyken preview modu)
     private bool[] previewOpened;
 
-    private void Update()
-    {
-        playerCollider = PlayerMovement2D.i.collider;
-    }
+    // Tilemap AÇIKKEN hover oldu mu? (sadece alpha düşürme)
+    private bool[] dimmedWhileOpen;
+
+    // Tilemap AÇIKKEN hover sırasında tıklanıp kapatıldı mı?
+    // Exit geldiğinde hiçbir şey değiştirmemek için.
+    private bool[] closedOnClickWhileDimmed;
+
     void Awake()
     {
         int n = Mathf.Max(buttons?.Length ?? 0, layers?.Length ?? 0);
@@ -33,30 +38,32 @@ public class UILevelLayerController : MonoBehaviour
 
         toggledOn = new bool[n];
         previewOpened = new bool[n];
+        dimmedWhileOpen = new bool[n];
+        closedOnClickWhileDimmed = new bool[n];
 
-        // Başlangıçta var olan layer'ları kapat
+        // Başlangıçta layer'ları kapat
         for (int i = 0; i < n; i++)
         {
             toggledOn[i] = false;
             previewOpened[i] = false;
+            dimmedWhileOpen[i] = false;
+            closedOnClickWhileDimmed[i] = false;
 
             GameObject layerObj = GetLayerObj(i);
             if (layerObj != null)
                 layerObj.SetActive(false);
         }
 
-        // Sadece button+layer ikisi de varsa bağla
+        // Bağla (sadece button + layer ikisi de varsa)
         for (int i = 0; i < n; i++)
         {
             Button btn = GetButton(i);
             GameObject layerObj = GetLayerObj(i);
-
-            if (btn == null || layerObj == null)
-                continue; // ✅ boş slot: atla
+            if (btn == null || layerObj == null) continue;
 
             int index = i;
 
-            // Hover/Exit handler (varsa yeniden ekleme)
+            // Hover/Exit
             HoverHandler h = btn.GetComponent<HoverHandler>();
             if (h == null) h = btn.gameObject.AddComponent<HoverHandler>();
             h.Init(
@@ -64,14 +71,14 @@ public class UILevelLayerController : MonoBehaviour
                 () => ExitLayer(index)
             );
 
-            // Click: çift listener olmasın diye önce temizle
+            // Click
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => ManageLayer(index));
         }
     }
 
     // =========================
-    // CLICK (kalıcı aç/kapat)
+    // CLICK: Toggle / özel durum
     // =========================
     public void ManageLayer(int index)
     {
@@ -80,64 +87,120 @@ public class UILevelLayerController : MonoBehaviour
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
 
+        // Eğer tilemap AÇIK ve hover ile sadece dimmed durumdaysa:
+        // -> tıklanınca renk düzeltilip tilemap kapanacak
+        if (toggledOn[index] && dimmedWhileOpen[index])
+        {
+            // renk düzelt
+            SetAlpha(tm, 1f);
+
+            // kapat
+            toggledOn[index] = false;
+            dimmedWhileOpen[index] = false;
+            previewOpened[index] = false;
+
+            closedOnClickWhileDimmed[index] = true; // Exit geldiğinde dokunma
+            tm.gameObject.SetActive(false);
+            return;
+        }
+
+        // Normal toggle:
         bool wantOpen = !toggledOn[index];
 
         if (wantOpen)
         {
-            // ❌ Player tilemap ile çakışıyorsa AÇMA
-            // Tilemap boşsa zaten false döner ve bloklamaz.
+            // Kapalıyken açılacak: player tile'larla çakışıyorsa açma
             if (playerCollider != null && IsPlayerOverlappingTilemap(tm, playerCollider))
             {
-                // ⚠️ previewOpened'a dokunma → exit düzgün kapatsın
+                // preview flaglerine dokunma (hover kapatma Exit ile)
                 return;
             }
 
             toggledOn[index] = true;
             previewOpened[index] = false;
-            RestoreToNormal(tm);
+            dimmedWhileOpen[index] = false;
+            closedOnClickWhileDimmed[index] = false;
+
+            RestoreToNormal(tm); // aktif + collider açık + alpha 1
         }
         else
         {
             toggledOn[index] = false;
             previewOpened[index] = false;
+            dimmedWhileOpen[index] = false;
+            closedOnClickWhileDimmed[index] = false;
+
             tm.gameObject.SetActive(false);
         }
     }
 
     // =========================
-    // HOVER (preview aç)
+    // HOVER
     // =========================
     public void HoverLayer(int index)
     {
         if (!HasValidPair(index)) return;
-        if (toggledOn[index]) return;
-        if (previewOpened[index]) return;
 
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
+
+        // Tilemap AÇIKKEN: collision'a dokunma, sadece alpha 0.5
+        if (toggledOn[index])
+        {
+            if (dimmedWhileOpen[index]) return; // zaten dimmed
+            dimmedWhileOpen[index] = true;
+            closedOnClickWhileDimmed[index] = false; // yeni hover başladı
+            SetAlpha(tm, 0.5f);
+            return;
+        }
+
+        // Tilemap KAPALIYKEN: preview modu (aktif et + collider kapalı + alpha 0.5)
+        if (previewOpened[index]) return;
 
         previewOpened[index] = true;
         ActivatePreview(tm);
     }
 
     // =========================
-    // EXIT (preview kapat)
+    // EXIT
     // =========================
     public void ExitLayer(int index)
     {
         if (!HasValidPair(index)) return;
-        if (toggledOn[index]) return;
-        if (!previewOpened[index]) return;
 
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
 
-        previewOpened[index] = false;
-        RestorePreviewAndDisable(tm);
+        // Eğer hover sırasında tıklandı ve kapandıysa: Exit'te hiçbir şey yapma
+        if (closedOnClickWhileDimmed[index])
+        {
+            // Bir sonraki hover döngüsüne hazırla
+            closedOnClickWhileDimmed[index] = false;
+            dimmedWhileOpen[index] = false;
+            previewOpened[index] = false;
+            return;
+        }
+
+        // Tilemap AÇIKKEN hover dimmed olduysa ve tıklanmadıysa:
+        // -> Exit'te rengi eski haline döndür
+        if (toggledOn[index] && dimmedWhileOpen[index])
+        {
+            dimmedWhileOpen[index] = false;
+            SetAlpha(tm, 1f);
+            return;
+        }
+
+        // Tilemap KAPALIYKEN preview açık ise:
+        // -> Exit'te preview kapat
+        if (!toggledOn[index] && previewOpened[index])
+        {
+            previewOpened[index] = false;
+            RestorePreviewAndDisable(tm);
+        }
     }
 
     // =========================
-    // Helpers (null-safe)
+    // Null-safe helpers
     // =========================
     private Button GetButton(int index)
     {
@@ -153,10 +216,7 @@ public class UILevelLayerController : MonoBehaviour
         return layers[index];
     }
 
-    private bool HasValidPair(int index)
-    {
-        return GetButton(index) != null && GetLayerObj(index) != null;
-    }
+    private bool HasValidPair(int index) => GetButton(index) != null && GetLayerObj(index) != null;
 
     private Tilemap GetTilemap(int index)
     {
@@ -166,7 +226,7 @@ public class UILevelLayerController : MonoBehaviour
     }
 
     // =========================
-    // Tilemap Modları
+    // Tilemap modları
     // =========================
     private static void ActivatePreview(Tilemap tilemap)
     {
@@ -178,9 +238,7 @@ public class UILevelLayerController : MonoBehaviour
         var comp = tilemap.GetComponent<CompositeCollider2D>();
         if (comp) comp.enabled = false;
 
-        Color c = tilemap.color;
-        c.a = 0.5f;
-        tilemap.color = c;
+        SetAlpha(tilemap, 0.5f);
     }
 
     private static void RestoreToNormal(Tilemap tilemap)
@@ -193,24 +251,28 @@ public class UILevelLayerController : MonoBehaviour
         var comp = tilemap.GetComponent<CompositeCollider2D>();
         if (comp) comp.enabled = true;
 
-        Color c = tilemap.color;
-        c.a = 1f;
-        tilemap.color = c;
+        SetAlpha(tilemap, 1f);
     }
 
     private static void RestorePreviewAndDisable(Tilemap tilemap)
     {
+        // güvenli restore
         var col = tilemap.GetComponent<TilemapCollider2D>();
         if (col) col.enabled = true;
 
         var comp = tilemap.GetComponent<CompositeCollider2D>();
         if (comp) comp.enabled = true;
 
-        Color c = tilemap.color;
-        c.a = 1f;
-        tilemap.color = c;
+        SetAlpha(tilemap, 1f);
 
         tilemap.gameObject.SetActive(false);
+    }
+
+    private static void SetAlpha(Tilemap tilemap, float a)
+    {
+        Color c = tilemap.color;
+        c.a = a;
+        tilemap.color = c;
     }
 
     // =========================
