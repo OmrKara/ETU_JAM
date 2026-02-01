@@ -18,7 +18,7 @@ public class UILevelLayerController : MonoBehaviour
     private bool[] toggledOn;
     private bool[] previewOpened;
 
-    private void Start()
+    private void Update()
     {
         playerCollider = PlayerMovement2D.i.collider;
     }
