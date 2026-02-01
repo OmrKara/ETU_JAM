@@ -33,7 +33,10 @@ public static class SoundManager {
         PortalEnter,
         ItemCollect,
         ButtonClick,
-        ButtonOver
+        ButtonOver,
+        
+        FallenSarkıtTitreme,
+        FallenSarkıtDüşme,
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;

@@ -11,6 +11,7 @@ public class DikitScript : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             PlayerMovement2D.i.gameObject.transform.position = spawnPoint.position;
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDie);
         }
     }
 }
