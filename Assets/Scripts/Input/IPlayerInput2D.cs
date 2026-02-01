@@ -11,5 +11,7 @@ public interface IPlayerInput2D
 
     bool ControlPressed { get; }
     bool ControlHeld { get; }
+    bool PausePressed { get; }
+
 
 }

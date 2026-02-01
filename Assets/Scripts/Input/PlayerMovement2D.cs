@@ -15,7 +15,7 @@ public class PlayerMovement2D : MonoBehaviour
     public float maxWalkSpeed = 3;
     public float maxCrouchSpeed = 2;
     public float maxRunSpeed = 10f;
-    private bool isSprinting; private bool isCrouching;
+    private bool isSprinting;
 
 
     public float groundAccel = 90f;
@@ -160,29 +160,18 @@ public class PlayerMovement2D : MonoBehaviour
         // Timers
         coyoteTimer = isGrounded ? coyoteTime : coyoteTimer - Time.deltaTime;
 
-        if (input.JumpPressed && !isCrouching) bufferTimer = jumpBuffer;
+        if (input.JumpPressed && !IsCrouching) bufferTimer = jumpBuffer;
         else bufferTimer -= Time.deltaTime;
 
         // Facing flip
         UpdateFacingFromInput(input.Move.x);
 
-        if (isGrounded)
+        if (isGrounded && !IsCrouching)
         {
             isSprinting = input.ShiftHeld;
         }
         if (isGrounded && !input.ShiftHeld)
             isSprinting = false;
-
-        if (isGrounded)
-        {
-            isCrouching = input.ControlHeld;
-        }
-        else
-        {
-            isCrouching = false;
-        }
-        if (isGrounded && !input.ControlHeld)
-            isCrouching = false;
 
         bool wantsCrouch = (input != null) && input.ControlHeld;
         bool locked = (standLock != null) && standLock.IsLocked;
@@ -217,7 +206,7 @@ public class PlayerMovement2D : MonoBehaviour
         {
             targetX = (float)(input.Move.x * maxRunSpeed);
         }
-        else if (isCrouching)
+        else if (IsCrouching)
         {
             targetX = (float)(input.Move.x * maxCrouchSpeed);
         }

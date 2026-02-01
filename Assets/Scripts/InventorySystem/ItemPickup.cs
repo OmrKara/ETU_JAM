@@ -24,13 +24,13 @@ public class ItemPickup : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Turkuaz:
-                uiImage = FindFirstObjectByType<TurkuazImage>().gameObject;
+                uiImage = FindFirstObjectByType<TurkuazImage>(FindObjectsInactive.Include).gameObject;
                 break;
             case ItemType.GreenMaskShard1:
-                uiImage = FindFirstObjectByType<GreenShard1>().gameObject;
+                uiImage = FindFirstObjectByType<GreenShard1>(FindObjectsInactive.Include).gameObject;
                 break;
             case ItemType.GreenMaskShard2:
-                uiImage = FindFirstObjectByType<GreenShard2>().gameObject;
+                uiImage = FindFirstObjectByType<GreenShard2>(FindObjectsInactive.Include).gameObject;
                 break;
             default:
                 break;
@@ -53,6 +53,7 @@ public class ItemPickup : MonoBehaviour
     private void Collect()
     {
         collected = true;
+        SoundManager.PlaySound(SoundManager.Sound.ItemCollect);
 
         // inventory
         GameHandler.I.AddItem(itemType);

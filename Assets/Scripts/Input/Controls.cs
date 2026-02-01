@@ -123,7 +123,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""LCtrl"",
                     ""type"": ""Button"",
                     ""id"": ""5cd45857-2668-4745-85db-15da6064650d"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""d347b821-640b-4c72-aab6-49894329f91b"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -261,6 +270,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""LCtrl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71df3c1e-8e07-41b7-98ea-a2b0b7529ff2"",
+                    ""path"": ""<Keyboard>/Escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +293,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PCGamePlay_Jump = m_PCGamePlay.FindAction("Jump", throwIfNotFound: true);
         m_PCGamePlay_LShift = m_PCGamePlay.FindAction("LShift", throwIfNotFound: true);
         m_PCGamePlay_LCtrl = m_PCGamePlay.FindAction("LCtrl", throwIfNotFound: true);
+        m_PCGamePlay_Esc = m_PCGamePlay.FindAction("Esc", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -357,6 +378,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PCGamePlay_Jump;
     private readonly InputAction m_PCGamePlay_LShift;
     private readonly InputAction m_PCGamePlay_LCtrl;
+    private readonly InputAction m_PCGamePlay_Esc;
     /// <summary>
     /// Provides access to input actions defined in input action map "PCGamePlay".
     /// </summary>
@@ -384,6 +406,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PCGamePlay/LCtrl".
         /// </summary>
         public InputAction @LCtrl => m_Wrapper.m_PCGamePlay_LCtrl;
+        /// <summary>
+        /// Provides access to the underlying input action "PCGamePlay/Esc".
+        /// </summary>
+        public InputAction @Esc => m_Wrapper.m_PCGamePlay_Esc;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -422,6 +448,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LCtrl.started += instance.OnLCtrl;
             @LCtrl.performed += instance.OnLCtrl;
             @LCtrl.canceled += instance.OnLCtrl;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
         }
 
         /// <summary>
@@ -445,6 +474,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @LCtrl.started -= instance.OnLCtrl;
             @LCtrl.performed -= instance.OnLCtrl;
             @LCtrl.canceled -= instance.OnLCtrl;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
         }
 
         /// <summary>
@@ -513,5 +545,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLCtrl(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Esc" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEsc(InputAction.CallbackContext context);
     }
 }

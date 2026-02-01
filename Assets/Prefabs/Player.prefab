@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 6753616197258627557}
   - component: {fileID: 1458133184812252241}
   - component: {fileID: 7136253311178395382}
+  - component: {fileID: 408530325164398946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -108,7 +109,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1358475967237333986}
-  - {fileID: 9070563349122081619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4706480926949818282
@@ -166,8 +166,8 @@ MonoBehaviour:
   movement: {fileID: 1538675656935568054}
   disableDuringSlide:
   - {fileID: 1538675656935568054}
-  slideSpeed: 8
-  slideDuration: 0.3
+  slideSpeed: 5
+  slideDuration: 0.2
   slideCooldown: 0.25
   groundOnly: 1
   slideBufferTime: 0.12
@@ -216,7 +216,7 @@ MonoBehaviour:
   collider: {fileID: 1329595378689488308}
   inputBehaviour: {fileID: 0}
   maxWalkSpeed: 2.5
-  maxCrouchSpeed: 0.5
+  maxCrouchSpeed: 1
   maxRunSpeed: 7
   groundAccel: 90
   groundDecel: 110
@@ -232,7 +232,7 @@ MonoBehaviour:
   coyoteTime: 0.05
   jumpBuffer: 0.12
   groundCheck: {fileID: 3435037858291931622}
-  groundCheckSize: {x: 0.6, y: 0.1}
+  groundCheckSize: {x: 0.04, y: 0.1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -339,8 +339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableDuringDash:
   - {fileID: 1538675656935568054}
-  dashSpeed: 18
-  dashDuration: 0.12
+  dashSpeed: 5
+  dashDuration: 0.15
   dashCooldown: 0.25
   inputDeadzone: 0.05
   disableGravityDuringDash: 1
@@ -364,6 +364,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   unlockDelay: 0.08
+--- !u!81 &408530325164398946
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419158592183132008}
+  m_Enabled: 1
 --- !u!1 &2558881775576002305
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +433,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6195217131005615921}
+  - {fileID: 9070563349122081619}
   m_Father: {fileID: 1358475967237333986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4040791727799650754
@@ -452,7 +461,7 @@ Transform:
   m_GameObject: {fileID: 4040791727799650754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.35, z: 0}
+  m_LocalPosition: {x: -0.017, y: -0.293, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -574,12 +583,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5332941665076382934}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3435037858291931622}
   - {fileID: 2707181502420743942}
-  m_Father: {fileID: 1371132703366552016}
+  m_Father: {fileID: 6318472207927295474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

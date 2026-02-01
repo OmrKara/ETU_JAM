@@ -50,13 +50,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b8b28eb77202b70428b3dae25c9b3565, type: 3}
     - {fileID: 8300000, guid: 803c635035ec0a64b87ef2be7d36dad6, type: 3}
     coolDown: 0.3
-    volumeMultiply: 5
+    volumeMultiply: 10
   - sound: 4
     audioClip:
     - {fileID: 8300000, guid: b8b28eb77202b70428b3dae25c9b3565, type: 3}
     - {fileID: 8300000, guid: 803c635035ec0a64b87ef2be7d36dad6, type: 3}
     coolDown: 0.5
-    volumeMultiply: 5
+    volumeMultiply: 10
   - sound: 2
     audioClip:
     - {fileID: 8300000, guid: 8d753b90bf9b06f4997cab79da6ca6ea, type: 3}
@@ -64,64 +64,59 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2e97d495cafef4549b9346322b60672b, type: 3}
     - {fileID: 8300000, guid: fff0e88181a29524ea405363e8556d15, type: 3}
     coolDown: 0.2
-    volumeMultiply: 1
+    volumeMultiply: 2
   - sound: 0
     audioClip:
     - {fileID: 8300000, guid: 320893c8f65baac40885bba031d8a26f, type: 3}
     coolDown: 0
-    volumeMultiply: 0.3
+    volumeMultiply: 0.7
   - sound: 3
     audioClip:
     - {fileID: 8300000, guid: 9c66e70eed5afe1498e0b7673e42cd26, type: 3}
     coolDown: 0.15
-    volumeMultiply: 1
+    volumeMultiply: 2
   - sound: 5
     audioClip:
-    - {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
+    - {fileID: 8300000, guid: b97be894f1c0f2b42ab44a4ec49cfece, type: 3}
     coolDown: 0.3
-    volumeMultiply: 0.4
+    volumeMultiply: 1.2
   - sound: 6
     audioClip:
     - {fileID: 8300000, guid: 4fa52f0f1de39de47802ef4105b36345, type: 3}
     coolDown: 0
-    volumeMultiply: 0.3
+    volumeMultiply: 0.6
   - sound: 7
     audioClip:
     - {fileID: 8300000, guid: 37cbc04448598334b9f8b2b416deabc5, type: 3}
     coolDown: 0
-    volumeMultiply: 1
+    volumeMultiply: 2
   - sound: 8
     audioClip:
-    - {fileID: 0}
-    coolDown: 0.1
-    volumeMultiply: 0.5
-  - sound: 9
-    audioClip:
-    - {fileID: 0}
-    coolDown: 0
-    volumeMultiply: 0.5
+    - {fileID: 8300000, guid: 979fdc9b1aa2810488dcbd024d521d95, type: 3}
+    coolDown: 2.5
+    volumeMultiply: 0.4
   - sound: 10
     audioClip:
     - {fileID: 8300000, guid: 83d702f408ca8c440a9e0619e3f9e3ee, type: 3}
     coolDown: 0
-    volumeMultiply: 0.5
+    volumeMultiply: 2
   - sound: 11
     audioClip:
-    - {fileID: 8300000, guid: 0e89781d7d864f945b76796f95d3da01, type: 3}
+    - {fileID: 8300000, guid: 8b55a74f2b46c6349a227c8c132451ab, type: 3}
     coolDown: 0
-    volumeMultiply: 2
+    volumeMultiply: 1
   - sound: 12
     audioClip:
     - {fileID: 8300000, guid: 9dc4ea2dd20dab74b96b346e8aabbfb8, type: 3}
     coolDown: 0
-    volumeMultiply: 2
+    volumeMultiply: 1.2
   - sound: 13
     audioClip:
     - {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
     coolDown: 0
-    volumeMultiply: 2
+    volumeMultiply: 4
   - sound: 14
     audioClip:
     - {fileID: 8300000, guid: 15d195a2a6e5ab24cb59ec3b6586ca50, type: 3}
     coolDown: 0
-    volumeMultiply: 2
+    volumeMultiply: 4

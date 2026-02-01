@@ -26,9 +26,7 @@ public static class SoundManager {
         PlayerCrouchWalk,
         PlayerSlide,
         PlayerJump,
-
-        //implement edilmedi daha
-        PlayerDie,
+        PlayerDie,        
         PortalSound,
         PortalEnter,
         ItemCollect,
@@ -58,7 +56,7 @@ public static class SoundManager {
             soundGameObject.transform.position = position;
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             audioSource.clip = GetAudioClip(sound);
-            audioSource.maxDistance = 100f;
+            audioSource.maxDistance = 3f;
             audioSource.spatialBlend = 1f;
             audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.dopplerLevel = 0f;
@@ -137,7 +135,7 @@ public static class SoundManager {
         {
             if (soundAudioClip.sound == sound)
             {
-                return soundAudioClip.volumeMultiply;
+                return soundAudioClip.volumeMultiply * AudioSettings.SfxVolume;
             }
         }
         Debug.LogError("Sound " + sound + " not found!");

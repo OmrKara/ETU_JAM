@@ -9,7 +9,7 @@ public class PortalScript : MonoBehaviour
 
     public void Update()
     {
-        //SoundManager.PlaySound(SoundManager.Sound.PortalSound, transform.position);
+        SoundManager.PlaySound(SoundManager.Sound.PortalSound, transform.position);
     }
 
 

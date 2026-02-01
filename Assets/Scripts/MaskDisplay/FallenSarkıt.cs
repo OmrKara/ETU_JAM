@@ -39,7 +39,7 @@ public class FallingPlatform2D : MonoBehaviour
     IEnumerator ShakeThenFall()
     {
         float t = 0f;
-        SoundManager.PlaySound(SoundManager.Sound.FallenSarkýtTitreme);
+        SoundManager.PlaySound(SoundManager.Sound.PlayerSlide);
 
         while (t < shakeDuration)
         {

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Dialogues
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   dialogues:
-  - "Maske: Kullanmak i\xE7in sa\u011F \xFCst k\xF6\u015Fedeki ikonlara t\u0131klay\u0131n."
-  - "Y\xFCr\xFCme"
-  - "Z\u0131plama"
-  - "Ko\u015Fma"
-  - Sprint
-  - "E\u011Filme"
-  - "Level ge\xE7me"
+  - "LayerMasking i\xE7in sa\u011F k\xF6\u015Fedeki maskeleri tak."
+  - "LayerMasking g\xF6remeyece\u011Fin layerlar\u0131 g\xF6rmeni sa\u011Flar."
+  - "Bir sonraki b\xF6l\xFCme ge\xE7mek i\xE7in mavi portallara ula\u015Fmal\u0131s\u0131n."
+  - "Farkl\u0131 layerlar\u0131 birle\u015Ftirmek portala giden yolu a\xE7acak."
+  - "LShift tu\u015Funa basarak Dash atabilirsin."
+  - "LShift tu\u015Funu bas\u0131l\u0131 tutarak Sprint atabilirsin."
+  - "LCtrl tu\u015Funu bas\u0131l\u0131 tutarak e\u011Filebilirsin."
+  - "LCtrl tu\u015Funa basarak roll atabilirsin."

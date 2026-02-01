@@ -8,6 +8,7 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
     private Controls controls;
 
     public Vector2 Move { get; private set; }
+    public bool PausePressed { get; private set; }
     public bool JumpPressed { get; private set; }
     public bool JumpHeld { get; private set; }
 
@@ -48,6 +49,8 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
         controls.PCGamePlay.Move.performed += ctx => Move = ctx.ReadValue<Vector2>();
         controls.PCGamePlay.Move.canceled += ctx => Move = Vector2.zero;
 
+        controls.PCGamePlay.Esc.performed += ctx => PausePressed = true;
+
         controls.PCGamePlay.Jump.performed += ctx =>
         {
             JumpPressed = true;
@@ -63,7 +66,7 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
             shiftDownTime = Time.time;
 
             // ✅ AIR DASH: basıldığı anda
-            if (PlayerMovement2D.i != null && !PlayerMovement2D.i.IsGrounded)
+            if (PlayerMovement2D.i != null && !PlayerMovement2D.i.IsGrounded && !PlayerMovement2D.i.IsCrouching)
             {
                 DashRequested = true;
             }
@@ -74,7 +77,7 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
             ShiftHeld = false;
 
             // ✅ GROUND DASH: tap (bas-bırak)
-            if (dashTapWindow > 0f && PlayerMovement2D.i != null && PlayerMovement2D.i.IsGrounded)
+            if (dashTapWindow > 0f && PlayerMovement2D.i != null && PlayerMovement2D.i.IsGrounded && !PlayerMovement2D.i.IsCrouching)
             {
                 float held = Time.time - shiftDownTime;
                 if (held <= dashTapWindow)
@@ -145,5 +148,6 @@ public class InputController2D : MonoBehaviour, IPlayerInput2D
 
         ControlPressed = false;
         SlideRequested = false;
+        PausePressed = false;
     }
 }
