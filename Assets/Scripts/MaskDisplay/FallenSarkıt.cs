@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class SarkıtScript : MonoBehaviour
+public class FallenSarkıt : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPoint;
 
     void OnTriggerEnter2D(Collider2D collision)
     {

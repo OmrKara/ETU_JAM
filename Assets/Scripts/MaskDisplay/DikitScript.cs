@@ -10,7 +10,7 @@ public class DikitScript : MonoBehaviour
 
         if (player.CompareTag("Player"))
         {
-            player.transform.position = spawnPoint.position;
+            PlayerMovement2D.i.gameObject.transform.position = spawnPoint.position;
         }
     }
 }

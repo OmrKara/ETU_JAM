@@ -4,10 +4,7 @@ using UnityEngine.SceneManagement;
 public class ChickenScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+    [SerializeField] private Transform spawnPoint;
 
     // Update is called once per frame
     void Update()
@@ -26,7 +23,7 @@ public class ChickenScript : MonoBehaviour
 
         if (enteredObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            PlayerMovement2D.i.gameObject.transform.position = spawnPoint.position;
         }
     }
 }
