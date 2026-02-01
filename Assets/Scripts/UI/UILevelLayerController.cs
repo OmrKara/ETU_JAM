@@ -11,6 +11,10 @@ public class UILevelLayerController : MonoBehaviour
     [Header("Layers (aynı sırada: 0..n-1)")]
     [SerializeField] private GameObject[] layers;
 
+    [Header("Block rule")]
+    [Tooltip("Player'ın Collider2D'sini buraya ver. Player bu tilemap ile çakışıyorsa click ile açma engellenecek.")]
+    [SerializeField] private Collider2D playerCollider;
+
     // click ile kalıcı açık mı?
     private bool[] toggledOn;
 
@@ -26,10 +30,12 @@ public class UILevelLayerController : MonoBehaviour
             return;
         }
 
+        if (playerCollider == null)
+            playerCollider = PlayerMovement2D.i.gameObject.GetComponentInChildren<Collider2D>();
+
         toggledOn = new bool[n];
         previewOpened = new bool[n];
 
-        // Başlangıçta kapat
         for (int i = 0; i < n; i++)
         {
             toggledOn[i] = false;
@@ -39,14 +45,12 @@ public class UILevelLayerController : MonoBehaviour
                 layers[i].SetActive(false);
         }
 
-        // Butonlara hover/exit/click bağla
         for (int i = 0; i < n; i++)
         {
             int index = i;
 
             if (buttons[index] == null) continue;
 
-            // Hover/Exit handler
             var handler = buttons[index].gameObject.GetComponent<HoverHandler>();
             if (handler == null) handler = buttons[index].gameObject.AddComponent<HoverHandler>();
             handler.Init(
@@ -54,7 +58,6 @@ public class UILevelLayerController : MonoBehaviour
                 onExit: () => ExitLayer(index)
             );
 
-            // Click
             buttons[index].onClick.AddListener(() => ManageLayer(index));
         }
     }
@@ -70,17 +73,28 @@ public class UILevelLayerController : MonoBehaviour
         if (tm == null) return;
 
         bool newState = !toggledOn[index];
-        toggledOn[index] = newState;
 
         if (newState)
         {
-            // Kalıcı açıldı -> preview bayrağını temizle
+            // ✅ KURAL: Player bu tilemap'in dolu tile alanıyla çakışıyorsa AÇMA
+            if (playerCollider != null && IsPlayerOverlappingTilemap(tm, playerCollider))
+            {
+                // toggle geri
+                toggledOn[index] = false;
+                previewOpened[index] = false;
+
+                // İstersen burada uyarı sesi/animasyonu tetiklersin
+                // Debug.Log("Blocked: Player is overlapping tilemap. Can't open.");
+                return;
+            }
+
+            toggledOn[index] = true;
             previewOpened[index] = false;
             RestoreToNormal(tm); // aktif + collider açık + alpha 1
         }
         else
         {
-            // Kalıcı kapandı
+            toggledOn[index] = false;
             previewOpened[index] = false;
             tm.gameObject.SetActive(false);
         }
@@ -92,8 +106,8 @@ public class UILevelLayerController : MonoBehaviour
     public void HoverLayer(int index)
     {
         if (!IsValid(index)) return;
-        if (toggledOn[index]) return;      // kalıcı açıksa hover yok
-        if (previewOpened[index]) return;  // zaten preview açık
+        if (toggledOn[index]) return;
+        if (previewOpened[index]) return;
 
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
@@ -108,8 +122,8 @@ public class UILevelLayerController : MonoBehaviour
     public void ExitLayer(int index)
     {
         if (!IsValid(index)) return;
-        if (toggledOn[index]) return;        // ✅ kalıcı açıksa asla kapatma
-        if (!previewOpened[index]) return;   // preview açılmadıysa kapatma
+        if (toggledOn[index]) return;
+        if (!previewOpened[index]) return;
 
         Tilemap tm = GetTilemap(index);
         if (tm == null) return;
@@ -130,6 +144,52 @@ public class UILevelLayerController : MonoBehaviour
     private bool IsValid(int index)
     {
         return toggledOn != null && index >= 0 && index < toggledOn.Length;
+    }
+
+    // =========================================================
+    // ✅ PLAYER - TILEMAP overlap kontrolü (tile data üzerinden)
+    // =========================================================
+    private static bool IsPlayerOverlappingTilemap(Tilemap tilemap, Collider2D playerCol)
+    {
+        if (tilemap == null || playerCol == null) return false;
+
+        Bounds pb = playerCol.bounds;
+
+        // Player bounds'un kapsadığı cell aralığı
+        Vector3Int min = tilemap.WorldToCell(pb.min);
+        Vector3Int max = tilemap.WorldToCell(pb.max);
+
+        // Tilemap cell size (world)
+        Vector3 cellSize = tilemap.cellSize;
+        Vector2 half = new Vector2(cellSize.x * 0.5f, cellSize.y * 0.5f);
+
+        // Küçük güvenlik: z çok önemli değil, 2D’de x-y bakıyoruz
+        for (int x = min.x; x <= max.x; x++)
+        {
+            for (int y = min.y; y <= max.y; y++)
+            {
+                Vector3Int cell = new Vector3Int(x, y, 0);
+
+                if (!tilemap.HasTile(cell))
+                    continue;
+
+                // cell'in world rect'i (tile anchor/offset farklıysa yine de iyi çalışır)
+                Vector3 center3 = tilemap.GetCellCenterWorld(cell);
+                Vector2 center = new Vector2(center3.x, center3.y);
+
+                // Tile rect bounds
+                float left = center.x - half.x;
+                float right = center.x + half.x;
+                float bottom = center.y - half.y;
+                float top = center.y + half.y;
+
+                // Player bounds ile kesişim kontrolü
+                if (pb.max.x > left && pb.min.x < right && pb.max.y > bottom && pb.min.y < top)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     // -------------------------
@@ -179,7 +239,6 @@ public class UILevelLayerController : MonoBehaviour
     {
         if (tilemap == null) return;
 
-        // değerleri normale çek (güvenli)
         var collider = tilemap.GetComponent<TilemapCollider2D>();
         if (collider != null) collider.enabled = true;
 
@@ -190,7 +249,6 @@ public class UILevelLayerController : MonoBehaviour
         c.a = 1f;
         tilemap.color = c;
 
-        // preview kapat
         tilemap.gameObject.SetActive(false);
     }
 
